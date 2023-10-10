@@ -1,8 +1,7 @@
 import React from 'react';
 import styles from './CreateBlog.module.css';
-
 interface CreateBlogProps {
-  setBlogState: (fieldName?: string, value?: string) => void;
+  setBlogState: (fieldName: string, value: string) => void;
   blogState: {
     title?: string;
     author?: string;

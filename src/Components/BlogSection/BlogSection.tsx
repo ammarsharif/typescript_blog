@@ -51,7 +51,12 @@ const BlogSection: React.FC<BlogSectionProps> = () => {
             {pathname === BrowserRoutes.HOME ? 'Add' : 'Edit'} Blog Post
           </h3>
         </div>
-        <CreateBlog blogState={blogState} setBlogState={setBlogState} />
+        <CreateBlog
+          blogState={blogState}
+          setBlogState={(fieldName, value) =>
+            setBlogState({ ...blogState, [fieldName]: value })
+          }
+        />
         <UploadImage imageUrl={blogState.imageUrl} />
         <ContentQuillSection content={blogState.content} />
       </div>
