@@ -10,18 +10,7 @@ interface BlogData {
   title: string;
   content: string;
 }
-// const handleEdit = (id: number) => {
-//   const blogToEdit = blogs.find((blog) => blog.id === id);
-//   if (blogToEdit) {
-//     setSelectedBlog(blogToEdit);
-//   }
-// };
 
-// const handleDelete = (id: number) => {
-//   const updatedBlogs = blogs.filter((blog) => blog.id !== id);
-//   setBlogs(updatedBlogs);
-//   setSelectedBlog(null);
-// };
 const BlogList: React.FC = () => {
   return (
     <ContentContainer width={100}>

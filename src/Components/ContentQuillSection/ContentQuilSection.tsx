@@ -1,11 +1,21 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import styles from './ContentQuillSection.module.css';
 import ContentContainer from '../ReuseableComponents/ContentContainer/ContentContainer';
-
-const ContentQuilSection = () => {
+import { NavLink, useLocation } from 'react-router-dom';
+import { BrowserRoutes } from '../../Constants/BrowseRoutes';
+interface Props {
+  content?: string;
+}
+const ContentQuilSection = ({ content }: Props) => {
   const [quillValue, setQuillValue] = useState('');
+  const { pathname } = useLocation();
+  useEffect(() => {
+    if (content) {
+      setQuillValue(content);
+    }
+  }, [content]);
 
   const handleContentChange = (value: string) => {
     setQuillValue(value);
@@ -28,9 +38,11 @@ const ContentQuilSection = () => {
           />
         </div>
         <form onSubmit={handleSubmit}>
-          <button className={styles['form-button']} type="submit">
-            Submit
-          </button>
+          <NavLink to={'/blogslist'}>
+            <button className={styles['form-button']} type="submit">
+              {pathname === BrowserRoutes.HOME ? 'Submit' : 'Update'}
+            </button>
+          </NavLink>
         </form>
       </div>
     </ContentContainer>

@@ -1,12 +1,22 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import image from './image_logo.png';
 import styles from './UploadImage.module.css';
-
-const UploadImage: React.FC = () => {
-  const [selectedImage, setSelectedImage] = useState<File | null>(null);
-
+import { renderMatches } from 'react-router';
+interface Props {
+  imageUrl?: string;
+}
+const UploadImage = ({ imageUrl }: Props) => {
+  const [selectedImage, setSelectedImage] = useState<File | null | string>(
+    null
+  );
+  useEffect(() => {
+    if (imageUrl) {
+      setSelectedImage(imageUrl);
+    }
+  }, [imageUrl]);
   const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
+    renderMatches;
     if (file) {
       setSelectedImage(file);
     }
@@ -38,7 +48,11 @@ const UploadImage: React.FC = () => {
           <>
             <img
               className={styles['image-preview']}
-              src={URL.createObjectURL(selectedImage)}
+              src={
+                typeof selectedImage === 'string'
+                  ? selectedImage
+                  : URL.createObjectURL(selectedImage)
+              }
               alt="Uploaded Preview"
             />
             <button

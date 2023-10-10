@@ -1,6 +1,6 @@
 export const BrowserRoutes = {
   HOME: '/',
-  CREATEBLOGS: '/blogslist/:blogUrl',
+  CREATEBLOGS: '/',
+  EDITBLOGS: '/blogslist/:blogUrl',
   BLOGLIST: 'blogslist',
-  BLOGEDIT: '/blogs/:blogUrl',
 } as const;
