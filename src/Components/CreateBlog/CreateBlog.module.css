@@ -1,0 +1,57 @@
+* {
+  font-family: 'Noto Sans', sans-serif;
+}
+.main_container {
+  display: flex;
+}
+.form-container {
+  max-width: 600px;
+}
+
+.form-label {
+  font-size: 1em;
+  border-radius: 1em;
+}
+
+.form-input {
+  width: 100%;
+  padding: 1.4em 1em;
+  margin: 0.7em 0;
+  font-size: 0.9em;
+  border: 1px solid #dadada;
+  border-radius: 4px;
+}
+textarea {
+  width: 105%;
+  height: 100px;
+  padding: 0.9em;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  font-size: 0.9;
+  margin-top: 0.7em;
+  resize: none;
+}
+
+@media screen and (max-width: 52em) {
+  .main_container {
+    flex-wrap: wrap;
+  }
+}
+@media screen and (max-width: 83.5em) {
+  .inputContainer {
+    width: 100%;
+  }
+}
+@media screen and (max-width: 37.2em) {
+  .form-input {
+    /* width: 90%; */
+    padding: 0.9em;
+  }
+}
+
+@media screen and (max-width: 30em) {
+  .form-input {
+    left: 72%;
+  }
+}

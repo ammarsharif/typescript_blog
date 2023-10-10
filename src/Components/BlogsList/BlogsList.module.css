@@ -1,0 +1,83 @@
+.blog_list {
+  margin-top: 0em;
+  display: flex;
+  flex-wrap: wrap;
+}
+.blog_container h1 {
+  margin-top: 1em;
+  color: #9c001a;
+  font-size: 3em;
+  font-weight: 600;
+  text-align: center;
+}
+
+.MainPageSection {
+  padding-top: 1em;
+}
+.header {
+  text-align: center;
+  margin: 2em;
+}
+.header h2 {
+  font-size: 2.9em;
+  font-weight: 900;
+  margin: 0.4em;
+}
+.header p {
+  font-size: 0.95em;
+  font-weight: lighter;
+  width: 80%;
+  margin: auto;
+}
+.articles {
+  margin-left: 1em;
+}
+.articles h2 {
+  font-size: 1.85em;
+}
+.line {
+  display: flex;
+  justify-content: center;
+  width: 97%;
+  border-bottom: 1px solid #aaaaaa;
+  margin: 1em auto;
+}
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.pagination button {
+  border: none;
+  background-color: transparent;
+  color: #007bff;
+  font-size: 16px;
+  margin: 0 5px;
+  cursor: pointer;
+  transition: color 0.2s ease-in-out;
+}
+
+.pagination button:hover {
+  color: #0056b3;
+}
+
+.pagination .activePage {
+  color: #0056b3;
+  font-weight: bold;
+}
+
+@media screen and (max-width: 92em) {
+  .inputField {
+    width: 94%;
+  }
+  .articles {
+    margin-left: 0.5em;
+  }
+}
+@media screen and (max-width: 80em) {
+  .line {
+    width: 97%;
+    border-bottom: 1px solid #aaaaaa;
+  }
+}
