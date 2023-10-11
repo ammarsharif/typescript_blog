@@ -11,7 +11,11 @@ const routerConfig = createBrowserRouter([
     element: <TemplateLayout />,
     children: [
       {
-        path: BrowserRoutes.CREATEBLOGS,
+        path: BrowserRoutes.EDITBLOGS,
+        element: <BlogSection />,
+      },
+      {
+        path: `${BrowserRoutes.CREATEBLOGS}`,
         element: <BlogSection />,
       },
       {

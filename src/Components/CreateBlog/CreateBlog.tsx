@@ -1,26 +1,21 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styles from './CreateBlog.module.css';
-
 interface CreateBlogProps {
-  secondaryFont?: string;
-  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  setBlogState: (fieldName: string, value: string) => void;
+  blogState: {
+    title?: string;
+    author?: string;
+    summary?: string;
+    imageUrl?: string;
+  };
 }
 
-const CreateBlog: React.FC<CreateBlogProps> = () => {
-  const [title, setTitle] = useState('');
-  const [author, setAuthor] = useState('');
-  const [summary, setSummary] = useState('');
-
-  const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setTitle(e.target.value);
-  };
-  const handleAuthorChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setAuthor(e.target.value);
-  };
-  const handleSummaryChange = (
+const CreateBlog: React.FC<CreateBlogProps> = ({ setBlogState, blogState }) => {
+  const handleStateChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
-    setSummary(e.target.value);
+    const { name, value } = e.target;
+    setBlogState(name, value);
   };
 
   return (
@@ -31,9 +26,10 @@ const CreateBlog: React.FC<CreateBlogProps> = () => {
           <input
             className={styles['form-input']}
             type="text"
-            value={title}
+            name="title"
+            value={blogState.title}
             placeholder="Blog Title"
-            onChange={handleTitleChange}
+            onChange={handleStateChange}
           />
         </div>
         <div>
@@ -41,9 +37,10 @@ const CreateBlog: React.FC<CreateBlogProps> = () => {
           <input
             className={styles['form-input']}
             type="text"
-            value={author}
+            name="author"
+            value={blogState.author}
             placeholder="Author"
-            onChange={handleAuthorChange}
+            onChange={handleStateChange}
           />
         </div>
         <div>
@@ -51,11 +48,10 @@ const CreateBlog: React.FC<CreateBlogProps> = () => {
           <textarea
             data-testid="message"
             required
-            name="message"
-            placeholder="How can we help you?"
-            value={summary}
+            name="summary"
+            value={blogState.summary}
             rows={10}
-            onChange={(e) => handleSummaryChange(e)}
+            onChange={handleStateChange}
           />
         </div>
       </form>
