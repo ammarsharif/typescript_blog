@@ -11,34 +11,34 @@ import { v4 as uuid4 } from 'uuid';
 // import insurance from './img/Health Insurance.jpeg';
 interface BlogDataProps {
   id?: string | number;
-  image?: string;
-  title: string;
-  author: string;
-  content: string;
-  summary: string;
-  url?: string;
+  blogImage?: string;
+  blogTitle: string;
+  blogAuthor: string;
+  blogContent: string;
+  blogSummary: string;
+  blogUrl?: string;
 }
 
 const BlogData: BlogDataProps[] = [
   {
-    image,
-    title: `Tax Tips`,
+    blogImage: image,
+    blogTitle: `Tax Tips`,
     id: uuid4(),
-    author: 'Joseph',
-    summary: 'Joseph author',
-    content:
+    blogAuthor: 'Joseph',
+    blogSummary: 'Joseph author',
+    blogContent:
       'In common usage and statistics, data is a collection of discrete or continuous values that convey information, describing the quantity, quality, fact, statistics, other basic units of meaning, or simply sequences of symbols that may be further interpreted formally.Transforming Businesses with Cutting-Edge Technology Our comprehensive range of services covers every aspect of the software development lifecycle. From conceptualization and design to development, implementation, and ongoing support, we ensure a seamless experience throughout the entire process. We leverage the latest technologies, industry best practices, and agile methodologies to deliver scalable, secure, and user-friendly software solutions.In common usage and statistics, data is a collection of discrete or continuous values that convey information, describing the quantity, quality, fact, statistics, other basic units of meaning, or simply sequences of symbols that may be further interpreted formally.',
-    url: 'Tax-Tips-September-2023',
+    blogUrl: 'Tax-Tips-September-2023',
   },
   {
-    image: stateImage,
-    title: `Pass-Through Entity`,
+    blogImage: stateImage,
+    blogTitle: `Pass-Through Entity`,
     id: uuid4(),
-    author: 'Mark',
-    summary: 'Mark author',
-    content:
+    blogAuthor: 'Mark',
+    blogSummary: 'Mark author',
+    blogContent:
       'Transforming Businesses with Cutting-Edge Technology Our comprehensive range of services covers every aspect of the software development lifecycle. From conceptualization and design to development, implementation, and ongoing support, we ensure a seamless experience throughout the entire process. We leverage the latest technologies, industry best practices, and agile methodologies to deliver scalable, secure, and user-friendly software solutions.In common usage and statistics, data is a collection of discrete or continuous values that convey information, describing the quantity, quality, fact, statistics, other basic units of meaning, or simply sequences of symbols that may be further interpreted formally.Transforming Businesses with Cutting-Edge Technology Our comprehensive range of services covers every aspect of the software development lifecycle. From conceptualization and design to development, implementation, and ongoing support, we ensure a seamless experience throughout the entire process.',
-    url: 'State-Pass-Through-Entity',
+    blogUrl: 'State-Pass-Through-Entity',
   },
   // {
   //   image: pte,

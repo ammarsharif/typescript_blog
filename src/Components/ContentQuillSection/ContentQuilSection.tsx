@@ -6,9 +6,17 @@ import ContentContainer from '../ReuseableComponents/ContentContainer/ContentCon
 import { NavLink, useLocation } from 'react-router-dom';
 import { BrowserRoutes } from '../../Constants/BrowseRoutes';
 interface Props {
+  setBlogState: (content: string) => void;
+  blogState: any;
   content?: string;
+  handleSubmit: (e: React.FormEvent) => void;
 }
-const ContentQuilSection = ({ content }: Props) => {
+const ContentQuilSection = ({
+  content,
+  blogState,
+  setBlogState,
+  handleSubmit,
+}: Props) => {
   const [quillValue, setQuillValue] = useState('');
   const { pathname } = useLocation();
   useEffect(() => {
@@ -17,12 +25,12 @@ const ContentQuilSection = ({ content }: Props) => {
     }
   }, [content]);
 
+  console.log('Content', blogState);
   const handleContentChange = (value: string) => {
     setQuillValue(value);
+    setBlogState(value);
   };
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-  };
+
   return (
     <ContentContainer width={70}>
       <div className={styles['quill_header']}>
@@ -37,13 +45,13 @@ const ContentQuilSection = ({ content }: Props) => {
             theme="snow"
           />
         </div>
-        <form onSubmit={handleSubmit}>
-          <NavLink to={'/blogslist'}>
-            <button className={styles['form-button']} type="submit">
-              {pathname === BrowserRoutes.HOME ? 'Submit' : 'Update'}
-            </button>
-          </NavLink>
-        </form>
+        {/* <form onSubmit={handleSubmit}> */}
+        <NavLink to={'/blogslist'}>
+          <button className={styles['form-button']} onClick={handleSubmit}>
+            {pathname === BrowserRoutes.HOME ? 'Submit' : 'Update'}
+          </button>
+        </NavLink>
+        {/* </form> */}
       </div>
     </ContentContainer>
   );

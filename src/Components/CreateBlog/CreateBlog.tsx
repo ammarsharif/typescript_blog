@@ -6,7 +6,6 @@ interface CreateBlogProps {
     title?: string;
     author?: string;
     summary?: string;
-    imageUrl?: string;
   };
 }
 
@@ -49,7 +48,7 @@ const CreateBlog: React.FC<CreateBlogProps> = ({ setBlogState, blogState }) => {
             data-testid="message"
             required
             name="summary"
-            value={blogState.summary}
+            value={blogState?.summary}
             rows={10}
             onChange={handleStateChange}
           />
