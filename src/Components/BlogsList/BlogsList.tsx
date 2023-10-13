@@ -18,7 +18,7 @@ const BlogList: React.FC = () => {
         if (response.data.ok) {
           const blogList = response.data.data;
           setBlogData(blogList);
-          setLoading(true);
+          setLoading(false);
         }
       } catch (error) {
         console.error('Error fetching all blog posts:', error);
@@ -33,6 +33,7 @@ const BlogList: React.FC = () => {
       const response = await axios.delete(`${BASE_API}/api/blog/${blogId}`);
       console.log('Delete response:', response);
 
+      setBlogData(blogData?.filter((blog) => blog._id !== blogId));
       if (response.status === 204) {
         alert('Blog Deleted successfully.');
         console.log('Deleted Blog');

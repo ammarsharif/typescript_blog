@@ -45,13 +45,17 @@ const ContentQuilSection = ({
             theme="snow"
           />
         </div>
-        {/* <form onSubmit={handleSubmit}> */}
+
         <NavLink to={'/blogslist'}>
           <button className={styles['form-button']} onClick={handleSubmit}>
             {pathname === BrowserRoutes.HOME ? 'Submit' : 'Update'}
           </button>
+          {pathname === BrowserRoutes.HOME ? (
+            <NavLink to={'/blogslist'}>
+              <button className={styles['buttons']}>Blog List</button>
+            </NavLink>
+          ) : null}
         </NavLink>
-        {/* </form> */}
       </div>
     </ContentContainer>
   );
