@@ -3,8 +3,6 @@ import styles from './Blogs.module.css';
 import { ThemeContext } from '../ReuseableComponents/ThemeContext/ThemeContext';
 
 interface BlogProps {
-  title: string;
-  content: string;
   imageSection?: React.ReactElement;
   contentSection?: React.ReactElement;
   contentDate?: React.ReactNode;

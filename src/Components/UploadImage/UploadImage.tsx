@@ -1,24 +1,46 @@
 import React, { useEffect, useState } from 'react';
-import image from './image_logo.png';
 import styles from './UploadImage.module.css';
-import { renderMatches } from 'react-router';
+import image from './image_logo.png';
+import axios from 'axios';
+
 interface Props {
+  setBlogState: (url: string) => void;
   imageUrl?: string;
 }
-const UploadImage = ({ imageUrl }: Props) => {
+
+const cloudinaryUrl = 'https://api.cloudinary.com/v1_1/dglimzeg9/image/upload';
+
+const UploadImage = ({ imageUrl, setBlogState }: Props) => {
   const [selectedImage, setSelectedImage] = useState<File | null | string>(
     null
   );
+
   useEffect(() => {
     if (imageUrl) {
       setSelectedImage(imageUrl);
     }
   }, [imageUrl]);
-  const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+
+  const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    e.preventDefault();
+
     const file = e.target.files?.[0];
-    renderMatches;
+
     if (file) {
-      setSelectedImage(file);
+      const formData = new FormData();
+      formData.append('file', file);
+      formData.append('upload_preset', 'tiqc0wxg');
+
+      try {
+        const uploadResponse = await axios.post(cloudinaryUrl, formData);
+        const imageUrl = uploadResponse.data.url;
+
+        setSelectedImage(imageUrl);
+        setBlogState(imageUrl);
+        console.log(imageUrl);
+      } catch (error) {
+        console.error('Error uploading image to Cloudinary:', error);
+      }
     }
   };
 
@@ -51,10 +73,11 @@ const UploadImage = ({ imageUrl }: Props) => {
               src={
                 typeof selectedImage === 'string'
                   ? selectedImage
-                  : URL.createObjectURL(selectedImage)
+                  : URL.createObjectURL(selectedImage as File)
               }
               alt="Uploaded Preview"
             />
+
             <button
               className={styles['remove-button']}
               onClick={handleRemoveImage}

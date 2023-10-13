@@ -19,6 +19,30 @@
 .heading {
   color: #9c001a;
 }
+.loader {
+  border: 8px solid #9c001a;
+  border-top: 8px solid transparent;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  animation: spin 2s linear infinite;
+}
+
+.loaderWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 60vh;
+  min-width: 100%;
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
 @media screen and (max-width: 62em) {
   .header p {
     width: 80%;
