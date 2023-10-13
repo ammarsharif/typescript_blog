@@ -7,7 +7,12 @@ import { ThemeContext } from '../ReuseableComponents/ThemeContext/ThemeContext';
 import ContentContainer from '../ReuseableComponents/ContentContainer/ContentContainer';
 import { useLocation, useParams } from 'react-router';
 import axios from 'axios';
-import { BASE_API, BrowserRoutes } from '../../Constants/BrowseRoutes';
+import {
+  BASE_API,
+  BrowserRoutes,
+  getAuthToken,
+  getHeadersData,
+} from '../../Constants/BrowseRoutes';
 
 interface BlogSectionProps {
   primaryFont?: string;
@@ -55,7 +60,11 @@ const BlogSection: React.FC<BlogSectionProps> = () => {
 
     if (pathname === BrowserRoutes.HOME) {
       try {
-        const response = await axios.post(`${BASE_API}/api/blog`, newBlogData);
+        const response = await axios.post(
+          `${BASE_API}/api/blog `,
+          newBlogData,
+          getHeadersData()
+        );
         const blog = response.data;
 
         alert('Blog created successfully.');
@@ -79,7 +88,8 @@ const BlogSection: React.FC<BlogSectionProps> = () => {
       try {
         const response = await axios.put(
           `${BASE_API}/api/blog/${blogState.id}`,
-          newBlogData
+          newBlogData,
+          getHeadersData()
         );
         const blog = response.data;
         if (response.data.ok) {
@@ -93,6 +103,8 @@ const BlogSection: React.FC<BlogSectionProps> = () => {
     }
   };
   useEffect(() => {
+    console.log(getAuthToken());
+
     const getUrlData = async () => {
       try {
         const response = await axios.get(`${BASE_API}/api/blog/${blogUrl}`);

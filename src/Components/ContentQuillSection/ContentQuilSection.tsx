@@ -7,7 +7,9 @@ import { NavLink, useLocation } from 'react-router-dom';
 import { BrowserRoutes } from '../../Constants/BrowseRoutes';
 interface Props {
   setBlogState: (content: string) => void;
-  blogState: any;
+  blogState: {
+    content: string;
+  };
   content?: string;
   handleSubmit: (e: React.FormEvent) => void;
 }
@@ -50,11 +52,6 @@ const ContentQuilSection = ({
           <button className={styles['form-button']} onClick={handleSubmit}>
             {pathname === BrowserRoutes.HOME ? 'Submit' : 'Update'}
           </button>
-          {pathname === BrowserRoutes.HOME ? (
-            <NavLink to={'/blogslist'}>
-              <button className={styles['buttons']}>Blog List</button>
-            </NavLink>
-          ) : null}
         </NavLink>
       </div>
     </ContentContainer>

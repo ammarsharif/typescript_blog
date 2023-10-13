@@ -1,0 +1,35 @@
+* {
+  font-family: 'Noto Sans', sans-serif;
+}
+
+.signin_container h3 {
+  margin-top: 2em;
+  color: #9c001a;
+  font-size: 2em;
+  font-weight: 600;
+  text-align: center;
+}
+.signin-Form {
+  display: flex;
+  justify-content: center;
+  margin-top: 30%;
+}
+.form-container {
+  display: flex;
+  justify-content: space-between;
+  margin: 3em 0em;
+}
+
+.form-button button {
+  background-color: #9c001a;
+  color: #ffff;
+  border: none;
+  padding: 10px 20px;
+  margin: 2em;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+}
+.form-button button :hover {
+  background-color: #8e0219;
+}

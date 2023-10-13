@@ -4,7 +4,7 @@ import styles from './BlogsList.module.css';
 import { NavLink } from 'react-router-dom';
 import ContentContainer from '../ReuseableComponents/ContentContainer/ContentContainer';
 import axios from 'axios';
-import { BASE_API } from '../../Constants/BrowseRoutes';
+import { BASE_API, getHeadersData } from '../../Constants/BrowseRoutes';
 
 const BlogList: React.FC = () => {
   const [blogData, setBlogData] = useState([]);
@@ -30,10 +30,13 @@ const BlogList: React.FC = () => {
   const deleteHandler = async (blogId: string) => {
     console.log('Deleting blog with ID:', blogId);
     try {
-      const response = await axios.delete(`${BASE_API}/api/blog/${blogId}`);
+      const response = await axios.delete(
+        `${BASE_API}/api/blog/${blogId}`,
+        getHeadersData()
+      );
       console.log('Delete response:', response);
 
-      setBlogData(blogData?.filter((blog) => blog._id !== blogId));
+      setBlogData(blogData?.filter((blog: any) => blog._id !== blogId));
       if (response.status === 204) {
         alert('Blog Deleted successfully.');
         console.log('Deleted Blog');

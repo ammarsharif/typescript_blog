@@ -5,6 +5,9 @@ import { BrowserRoutes } from '../../Constants/BrowseRoutes';
 import BlogList from '../BlogsList/BlogsList';
 import TemplateLayout from '../TemplateLayout/TemplateLayout';
 import BlogSection from '../BlogSection/BlogSection';
+import Signup from '../SignUp/SignUp';
+import Signin from '../SignIn/SignIn';
+import RouterPage from '../RouterPage/RouterPage';
 const routerConfig = createBrowserRouter([
   {
     path: BrowserRoutes.HOME,
@@ -21,6 +24,18 @@ const routerConfig = createBrowserRouter([
       {
         path: `${BrowserRoutes.BLOGLIST}`,
         element: <BlogList />,
+      },
+      {
+        path: `${BrowserRoutes.SIGNUP}`,
+        element: <Signup />,
+      },
+      {
+        path: `${BrowserRoutes.SIGNIN}`,
+        element: <Signin />,
+      },
+      {
+        path: `${BrowserRoutes.ROUTER}`,
+        element: <RouterPage />,
       },
     ],
   },

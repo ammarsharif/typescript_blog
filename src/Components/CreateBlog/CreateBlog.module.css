@@ -1,9 +1,6 @@
 * {
   font-family: 'Noto Sans', sans-serif;
 }
-.main_container {
-  display: flex;
-}
 .form-container {
   max-width: 600px;
 }
@@ -32,20 +29,8 @@ textarea {
   margin-top: 0.7em;
   resize: none;
 }
-
-@media screen and (max-width: 52em) {
-  .main_container {
-    flex-wrap: wrap;
-  }
-}
-@media screen and (max-width: 83.5em) {
-  .inputContainer {
-    width: 100%;
-  }
-}
 @media screen and (max-width: 37.2em) {
   .form-input {
-    /* width: 90%; */
     padding: 0.9em;
   }
 }
