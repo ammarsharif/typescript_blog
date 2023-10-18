@@ -1,5 +1,5 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import React, { useContext, useState } from 'react';
+import { Link } from 'react-router-dom';
 import styles from './Header.module.css';
 import { BrowserRoutes } from '../../Constants/BrowseRoutes';
 import BusinessLogo from '../BusinessLogo/BusinessLogo';
@@ -16,7 +16,6 @@ interface StyledNavLinkProps {
 
 const StyledNavLink = (props: StyledNavLinkProps) => {
   const theme = useContext(ThemeContext);
-  const location = useLocation();
 
   const color = theme.blackColor;
 
@@ -26,20 +25,6 @@ const StyledNavLink = (props: StyledNavLinkProps) => {
     fontFamily: props.fontFamily ?? theme.secondaryFont,
   };
 
-  const scroll = (id: string) => {
-    window.scrollTo({
-      top: document.getElementById(id)!?.offsetTop,
-      behavior: 'smooth',
-    });
-  };
-  useEffect(() => {
-    const hashValue = location.hash.split('#')[1];
-    if (hashValue) {
-      scroll(hashValue);
-    } else {
-      window.scrollTo(0, 0);
-    }
-  }, [location]);
   return (
     <Link style={textStyle} className={props.className ?? ''} to={props.to}>
       {props.children}

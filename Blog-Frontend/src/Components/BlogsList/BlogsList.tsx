@@ -10,9 +10,9 @@ import { BASE_API, getHeadersData } from '../../Constants/BrowseRoutes';
 import AddButton from '../AddButton/AddButton';
 import Loader from '../Loader/loader';
 interface BlogsProps {
+  _id: string;
   blogImage: string;
   blogTitle: string;
-  _id: string;
   blogAuthor: string;
   blogSummary: string;
   blogContent: string;
@@ -91,10 +91,10 @@ const BlogList: React.FC = () => {
             margin={2.7}
             name="New Blog"
           />
-          {blogData?.map((blog: any, index: string) => (
+          {blogData?.map((blog: BlogsProps, index: string) => (
             <div className={styles.blogsList} key={index}>
               <Blog
-                imageSection={<img src={blog?.blogImageUrl} alt="BlogImage" />}
+                imageSection={<img src={blog?.blogImage} alt="BlogImage" />}
                 contentSection={
                   <div>
                     <h3>{blog?.blogTitle}</h3>

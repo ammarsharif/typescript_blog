@@ -39,7 +39,7 @@ const fetchJobByUrl = async (jobUrl: string) => {
   return response.data.jobPost;
 };
 
-const CreateCareers: React.FC<CreateCareersProps> = ({}) => {
+const CreateCareers: React.FC<CreateCareersProps> = () => {
   const { pathname } = useLocation();
   const [jobData, setJobData] = useState<CreateJobProps>(initialJobState);
   const [Loading, setLoading] = useState(false);
