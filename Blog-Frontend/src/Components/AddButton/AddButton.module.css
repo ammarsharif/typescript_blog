@@ -1,0 +1,22 @@
+.addCareerBox {
+  border: 1px dashed #ccc;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border-radius: 0.5em;
+  padding: 0.5em 1em;
+  margin: 1.2em;
+}
+
+.addCareerIcon {
+  font-size: 48px;
+  line-height: 48px;
+}
+
+.addCareerText {
+  margin-top: 10px;
+  font-size: 18px;
+  color: #333;
+}

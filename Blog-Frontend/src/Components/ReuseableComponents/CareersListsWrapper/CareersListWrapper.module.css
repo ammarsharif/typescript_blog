@@ -1,0 +1,44 @@
+.careerList {
+  border: 1px solid black;
+  border-radius: 0.5em;
+  width: 17.5em;
+  height: 9em;
+  padding: 0.5em 1em;
+  display: flex;
+  margin: 20px;
+}
+.blog button:hover {
+  background-color: #8e0219;
+}
+.careerHeader h3 {
+  padding: 0px;
+}
+.dataBlog {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  padding: 1em;
+  border-radius: 1em;
+}
+.buttonList {
+  display: flex;
+}
+.dat2Blog {
+  margin-left: 1em;
+}
+.description {
+  font-weight: lighter !important;
+  font-size: 1.25;
+  margin-top: 0em;
+  color: rgb(56, 56, 56);
+}
+.careerList span {
+  display: inline-block;
+}
+@media screen and (max-width: 25em) {
+  .careerHeader {
+    margin-left: 1em;
+  }
+}
