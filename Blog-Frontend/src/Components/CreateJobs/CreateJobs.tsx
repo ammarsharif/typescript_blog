@@ -8,20 +8,8 @@ import axios from 'axios';
 import { useQuery } from 'react-query';
 import Loader from '../Loader/Loader';
 import { getHeadersData } from '../../Constants/Headers';
-interface CreateJobsProps {
-  primaryFont?: string;
-  secondaryFont?: string;
-  primaryColor?: string;
-}
-interface CreateJobProps {
-  _id?: string;
-  title: string;
-  location: string;
-  description: string;
-  jobType: string;
-  requirements: string;
-  offers: string;
-}
+import { CreateJobProps, ThemeProps } from '../GlobalTypes/GlobalTypes';
+
 const initialJobState = {
   _id: '',
   title: '',
@@ -37,7 +25,7 @@ const fetchJobByUrl = async (jobUrl: string) => {
   return response.data.jobPost;
 };
 
-const Createjobs: React.FC<CreateJobsProps> = () => {
+const Createjobs: React.FC<ThemeProps> = () => {
   const { pathname } = useLocation();
   const [jobData, setJobData] = useState<CreateJobProps>(initialJobState);
   const [Loading, setLoading] = useState(false);

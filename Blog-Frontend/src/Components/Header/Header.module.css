@@ -7,7 +7,7 @@
   width: 100%;
 }
 .MobileNav {
-  background-image: url('../HomeBanner/bg2.png');
+  background-image: url('./bg2.png');
   background-repeat: no-repeat;
   z-index: 1;
   display: none;
@@ -93,5 +93,10 @@
   }
   .Nav {
     padding: 0em 1em;
+  }
+}
+@media screen and (max-width: 21em) {
+  .MobileNav {
+    width: 112%;
   }
 }

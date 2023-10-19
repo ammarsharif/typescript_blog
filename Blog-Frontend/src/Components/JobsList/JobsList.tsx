@@ -8,21 +8,8 @@ import { useMutation, useQuery, useQueryClient } from 'react-query';
 import { BASE_API } from '../../Constants/BrowseRoutes';
 import Loader from '../Loader/Loader';
 import { getHeadersData } from '../../Constants/Headers';
+import { JobsDataProps, ThemeProps } from '../GlobalTypes/GlobalTypes';
 
-interface JobsListProps {
-  primaryFont?: string;
-  secondaryFont?: string;
-}
-interface JobsDataProps {
-  _id: string;
-  title: string;
-  location?: string;
-  description?: string;
-  jobType?: string;
-  requirements?: string;
-  offers?: string;
-  datePosted: Date;
-}
 const fetchCareerData = async () => {
   const response = await axios.get(`${BASE_API}/api/jobs`);
   if (response.data.ok) {
@@ -43,7 +30,7 @@ const deleteJob = async (jobId: string) => {
     throw new Error(`Unexpected status code: ${response.status}`);
   }
 };
-const JobsList: React.FC<JobsListProps> = () => {
+const JobsList: React.FC<ThemeProps> = () => {
   const queryClient = useQueryClient();
   const {
     data: careerData,
@@ -89,7 +76,7 @@ const JobsList: React.FC<JobsListProps> = () => {
     return <div>Error loading blog posts.</div>;
   }
   return (
-    <ContentContainer width={80}>
+    <ContentContainer width={75}>
       <div className={styles.bannerWrapper}>
         <div className={styles.jobs_list}>
           <AddButton

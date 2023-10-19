@@ -1,13 +1,7 @@
 import React, { useContext } from 'react';
 import styles from './Blogs.module.css';
 import { ThemeContext } from '../ReuseableComponents/ThemeContext/ThemeContext';
-
-interface BlogProps {
-  imageSection?: React.ReactElement;
-  contentSection?: React.ReactElement;
-  contentDate?: React.ReactNode;
-  children?: React.ReactElement;
-}
+import { BlogProps } from '../GlobalTypes/GlobalTypes';
 
 const Blog: React.FC<BlogProps> = ({
   contentSection,

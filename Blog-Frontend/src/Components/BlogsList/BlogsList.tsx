@@ -10,15 +10,8 @@ import { BASE_API } from '../../Constants/BrowseRoutes';
 import AddButton from '../AddButton/AddButton';
 import { getHeadersData } from '../../Constants/Headers';
 import Loader from '../Loader/Loader';
-interface BlogsProps {
-  _id: string;
-  blogImageUrl: string;
-  blogTitle: string;
-  blogAuthor: string;
-  blogSummary: string;
-  blogContent: string;
-  blogUrl: string;
-}
+import { BlogsListProps } from '../GlobalTypes/GlobalTypes';
+
 const fetchBlogData = async () => {
   const response = await axios.get(`${BASE_API}/api/blogs`);
   if (response.data.ok) {
@@ -60,7 +53,7 @@ const BlogList: React.FC = () => {
 
     mutate(blogId, {
       onSuccess: (deletedBlogId) => {
-        blogData?.filter((blog: BlogsProps) => blog._id !== deletedBlogId);
+        blogData?.filter((blog: BlogsListProps) => blog._id !== deletedBlogId);
 
         console.log('Deleted Blog');
       },
@@ -82,18 +75,17 @@ const BlogList: React.FC = () => {
   }
 
   return (
-    <ContentContainer width={100}>
+    <ContentContainer width={75}>
       <div className={styles['blog_container']}>
-        <h1>Blog List</h1>
         <div className={styles['blog_list']}>
           <AddButton
             onClick={handleAddButton}
-            width={18}
+            width={17.7}
             height={11}
             margin={2.7}
             name="New Blog"
           />
-          {blogData?.map((blog: BlogsProps, index: string) => (
+          {blogData?.map((blog: BlogsListProps, index: string) => (
             <div className={styles.blogsList} key={index}>
               <Blog
                 imageSection={<img src={blog?.blogImageUrl} alt="BlogImage" />}
