@@ -1,0 +1,97 @@
+.Nav {
+  display: flex;
+  padding: 2.25em 3em;
+}
+.DesktopNav {
+  display: flex;
+  width: 100%;
+}
+.MobileNav {
+  background-image: url('../HomeBanner/bg2.png');
+  background-repeat: no-repeat;
+  z-index: 1;
+  display: none;
+  width: 100%;
+  padding: 2em 0em;
+  position: absolute;
+  top: 0em;
+  transition: top 0.25s ease;
+}
+.isHidden {
+  opacity: 0;
+  pointer-events: none;
+  top: -35em;
+}
+
+.logo {
+  display: flex;
+  gap: 1em;
+  align-items: center;
+}
+.Nav ul {
+  margin: auto;
+  display: flex;
+  list-style: none;
+}
+.Nav a,
+.MobileNav a {
+  margin: 0em 2.5em;
+  white-space: nowrap;
+  text-decoration: none;
+}
+.Nav button,
+.MobileNav button {
+  width: 8.5em;
+  font-size: 1.1em;
+  padding: 0.6em;
+  border: none;
+  border-radius: 0.4em;
+  cursor: pointer;
+}
+.phoneNumber {
+  display: flex;
+  align-items: center;
+  height: 1.5em;
+  border: 0.02em solid rgb(224, 223, 223);
+  padding: 0.5em 0.75em;
+  border-radius: 2em;
+}
+
+@media screen and (max-width: 83em) {
+  .Nav a {
+    margin: 0em 1em;
+  }
+}
+@media screen and (max-width: 62em) {
+  .DesktopNav {
+    display: none;
+  }
+  .MobileNav {
+    display: block;
+  }
+  .MobileNav ul {
+    text-align: center;
+    list-style: none;
+    width: fit-content;
+    margin: 3em auto;
+    padding: 0;
+  }
+  .MobileNav a {
+    display: block;
+    padding: 1em;
+  }
+  .phoneNumber {
+    display: flex !important;
+    align-items: center;
+    padding: 0.5em 0.75em !important;
+  }
+  .MobileNav button {
+    height: 2.75em;
+  }
+  .logo {
+    margin: 2em 0.5em !important;
+  }
+  .Nav {
+    padding: 0em 1em;
+  }
+}

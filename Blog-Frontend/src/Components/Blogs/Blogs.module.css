@@ -1,0 +1,69 @@
+.bannerList {
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+.bannerList h2 {
+  margin: 0;
+  color: #333;
+}
+
+.bannerList p {
+  margin: 10px 0;
+}
+
+.bannerList button {
+  margin-right: 0.7em;
+  padding: 0.5em 0.9em;
+  background-color: #9c001a;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.blog button:hover {
+  background-color: #8e0219;
+}
+.bannerList {
+  position: relative;
+  margin: 2em 1em;
+}
+
+.bannerList img {
+  display: block;
+  width: 20em;
+  height: 12.5em;
+  filter: brightness(50%);
+  border-radius: 0.5em;
+}
+.dataBlog {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  padding: 1em;
+  border-radius: 0.5em;
+}
+.buttonList {
+  display: flex;
+}
+.dat2Blog {
+  margin-left: 1em;
+}
+.description {
+  font-weight: lighter !important;
+  margin-bottom: 0.5em;
+  font-size: 1.25;
+  color: rgb(56, 56, 56);
+}
+@media screen and (max-width: 35em) {
+  .bannerList img {
+    margin: 0em;
+    flex-wrap: wrap;
+  }
+  .dateBlog {
+    margin-left: 1em;
+  }
+}

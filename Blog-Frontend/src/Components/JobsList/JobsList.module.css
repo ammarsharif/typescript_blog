@@ -1,0 +1,48 @@
+.header {
+  text-align: center;
+  margin: 2em;
+  margin-top: 2em;
+  padding-top: 2em;
+}
+.header h4 {
+  font-size: 2.5em;
+  font-weight: 500;
+  margin: 0.4em;
+}
+.header p {
+  font-size: 1.15em;
+  font-weight: 400;
+  width: 60%;
+  margin: 0 auto;
+}
+.jobs_list {
+  margin-top: 5em;
+  display: flex;
+  flex-wrap: wrap;
+}
+.buttonEdit {
+  padding: 0.5em 0.9em;
+  background-color: #9c001a;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.buttonDelete {
+  margin: 0em 1em;
+  background-color: red;
+  padding: 0.5em 0.9em;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+@media screen and (max-width: 62em) {
+  .header p {
+    width: 80%;
+  }
+  .header h4 {
+    font-size: 2.25em;
+  }
+}
