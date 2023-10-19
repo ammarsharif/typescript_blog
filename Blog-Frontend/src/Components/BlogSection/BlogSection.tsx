@@ -8,11 +8,8 @@ import ContentContainer from '../ReuseableComponents/ContentContainer/ContentCon
 import { useLocation, useParams } from 'react-router';
 import { useQuery } from 'react-query';
 import axios from 'axios';
-import {
-  BASE_API,
-  BrowserRoutes,
-  getHeadersData,
-} from '../../Constants/BrowseRoutes';
+import { BASE_API, BrowserRoutes } from '../../Constants/BrowseRoutes';
+import { getHeadersData } from '../../Constants/Headers';
 interface blogState {
   _id?: string;
   blogTitle: string;
@@ -73,7 +70,7 @@ const BlogSection: React.FC<BlogSectionProps> = () => {
 
       setBlogState(initialBlogState);
     }
-  }, [data?._id]);
+  }, [data, blogState._id]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

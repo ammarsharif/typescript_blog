@@ -6,16 +6,17 @@ import CareersListWrapper from '../ReuseableComponents/CareersListsWrapper/Caree
 import { NavLink, useNavigate } from 'react-router-dom';
 import AddButton from '../AddButton/AddButton';
 import axios from 'axios';
-import { useQuery } from 'react-query';
+import { useMutation, useQuery, useQueryClient } from 'react-query';
 import { BASE_API } from '../../Constants/BrowseRoutes';
-import Loader from '../Loader/loader';
+import Loader from '../Loader/Loader';
+import { getHeadersData } from '../../Constants/Headers';
 
 interface CareersListProps {
   primaryFont?: string;
   secondaryFont?: string;
 }
 interface CareersDataProps {
-  _id?: string | number;
+  _id: string;
   title: string;
   location?: string;
   description?: string;
@@ -32,12 +33,45 @@ const fetchCareerData = async () => {
     throw new Error('Error fetching blog data');
   }
 };
+const deleteJob = async (jobId: string) => {
+  const response = await axios.delete(
+    `${BASE_API}/api/job/${jobId}`,
+    getHeadersData()
+  );
+
+  if (response.status === 204) {
+    return jobId;
+  } else {
+    throw new Error(`Unexpected status code: ${response.status}`);
+  }
+};
 const CareersList: React.FC<CareersListProps> = () => {
+  const queryClient = useQueryClient();
   const {
     data: careerData,
     isLoading,
     isError,
   } = useQuery('blogs', fetchCareerData);
+  const { mutate } = useMutation(deleteJob, {
+    onSettled: () => {
+      queryClient.invalidateQueries('blogs');
+    },
+  });
+  const deleteHandler = (jobId: string) => {
+    console.log('Deleting blog with ID:', jobId);
+
+    mutate(jobId, {
+      onSuccess: (deletedJobId) => {
+        careerData?.filter((job: CareersDataProps) => job._id !== deletedJobId);
+
+        alert('Job Deleted successfully.');
+        console.log('Deleted job');
+      },
+      onError: (error) => {
+        console.error('Error deleting the Job:', error);
+      },
+    });
+  };
   const theme = useContext(ThemeContext);
 
   const primaryFontStyle = {
@@ -81,7 +115,7 @@ const CareersList: React.FC<CareersListProps> = () => {
           <AddButton
             onClick={handleAddButton}
             width={17.5}
-            height={9}
+            height={9.5}
             margin={1.2}
             name="New Job"
           />
@@ -110,7 +144,12 @@ const CareersList: React.FC<CareersListProps> = () => {
                   <NavLink to={`/careerslist/${careers?._id}`}>
                     <button className={styles.buttonEdit}>Edit</button>
                   </NavLink>
-                  <button className={styles.buttonDelete}>Delete</button>
+                  <button
+                    className={styles.buttonDelete}
+                    onClick={() => deleteHandler(careers._id)}
+                  >
+                    Delete
+                  </button>
                 </div>
               </CareersListWrapper>
             </div>

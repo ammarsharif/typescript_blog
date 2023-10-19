@@ -6,12 +6,13 @@ import ContentContainer from '../ReuseableComponents/ContentContainer/ContentCon
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useQuery, useMutation, useQueryClient } from 'react-query';
-import { BASE_API, getHeadersData } from '../../Constants/BrowseRoutes';
+import { BASE_API } from '../../Constants/BrowseRoutes';
 import AddButton from '../AddButton/AddButton';
-import Loader from '../Loader/loader';
+import { getHeadersData } from '../../Constants/Headers';
+import Loader from '../Loader/Loader';
 interface BlogsProps {
   _id: string;
-  blogImage: string;
+  blogImageUrl: string;
   blogTitle: string;
   blogAuthor: string;
   blogSummary: string;
@@ -94,7 +95,7 @@ const BlogList: React.FC = () => {
           {blogData?.map((blog: BlogsProps, index: string) => (
             <div className={styles.blogsList} key={index}>
               <Blog
-                imageSection={<img src={blog?.blogImage} alt="BlogImage" />}
+                imageSection={<img src={blog?.blogImageUrl} alt="BlogImage" />}
                 contentSection={
                   <div>
                     <h3>{blog?.blogTitle}</h3>

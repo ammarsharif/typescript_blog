@@ -2,14 +2,11 @@ import React, { useEffect, useState } from 'react';
 import styles from './CreateCareers.module.css';
 import ContentContainer from '../ReuseableComponents/ContentContainer/ContentContainer';
 import { NavLink, useLocation, useParams } from 'react-router-dom';
-import {
-  BASE_API,
-  BrowserRoutes,
-  getHeadersData,
-} from '../../Constants/BrowseRoutes';
+import { BASE_API, BrowserRoutes } from '../../Constants/BrowseRoutes';
 import axios from 'axios';
 import { useQuery } from 'react-query';
-import Loader from '../Loader/loader';
+import Loader from '../Loader/Loader';
+import { getHeadersData } from '../../Constants/Headers';
 interface CreateCareersProps {
   primaryFont?: string;
   secondaryFont?: string;
@@ -60,7 +57,7 @@ const CreateCareers: React.FC<CreateCareersProps> = () => {
       console.log('Setting ELSE');
       setJobData(initialJobState);
     }
-  }, [data?._id]);
+  }, [data, jobData._id]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

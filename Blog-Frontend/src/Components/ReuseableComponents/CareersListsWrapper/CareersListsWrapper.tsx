@@ -29,18 +29,17 @@ const CareersListWrapper: React.FC<CareersListWrapperProps> = ({
     <div data-testid="CareerListWrapper" style={secondaryFontStyle}>
       <div className={styles.careerList}>
         <div className={styles.careerHeader}>
-          <div style={{ display: 'flex', alignItems: 'center', margin: '0em' }}>
-            <h4 style={{ color: '#0096FF' }}>{contentSection}</h4>
-            <p style={{ marginLeft: '1em', color: 'gray' }}>{jobType}</p>
-          </div>
-
-          <p className={styles.description}>{location}</p>
-          <div className={styles.buttonList}>{children}</div>
           <div>
-            <span style={{ color: '#b3b1b1' }}>
-              <SlCalender /> {contentDate}
-            </span>
+            <h4 style={{ color: '#0096FF' }}>{contentSection}</h4>
+            <p className={styles.description}>{location}</p>
           </div>
+          <p className={styles.jobType}>{jobType}</p>
+        </div>
+        <div className={styles.buttonList}>{children}</div>
+        <div>
+          <span style={{ color: '#b3b1b1' }}>
+            <SlCalender /> {contentDate}
+          </span>
         </div>
       </div>
     </div>
