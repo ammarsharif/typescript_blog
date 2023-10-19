@@ -1,8 +1,6 @@
-import { useContext } from 'react';
-import styles from './CareersList.module.css';
-import { ThemeContext } from '../ReuseableComponents/ThemeContext/ThemeContext';
+import styles from './jobsList.module.css';
 import ContentContainer from '../ReuseableComponents/ContentContainer/ContentContainer';
-import CareersListWrapper from '../ReuseableComponents/CareersListsWrapper/CareersListsWrapper';
+import JobsListWrapper from '../ReuseableComponents/JobsListsWrapper/JobsListsWrapper';
 import { NavLink, useNavigate } from 'react-router-dom';
 import AddButton from '../AddButton/AddButton';
 import axios from 'axios';
@@ -11,11 +9,11 @@ import { BASE_API } from '../../Constants/BrowseRoutes';
 import Loader from '../Loader/Loader';
 import { getHeadersData } from '../../Constants/Headers';
 
-interface CareersListProps {
+interface JobsListProps {
   primaryFont?: string;
   secondaryFont?: string;
 }
-interface CareersDataProps {
+interface JobsDataProps {
   _id: string;
   title: string;
   location?: string;
@@ -45,7 +43,7 @@ const deleteJob = async (jobId: string) => {
     throw new Error(`Unexpected status code: ${response.status}`);
   }
 };
-const CareersList: React.FC<CareersListProps> = () => {
+const JobsList: React.FC<JobsListProps> = () => {
   const queryClient = useQueryClient();
   const {
     data: careerData,
@@ -59,12 +57,10 @@ const CareersList: React.FC<CareersListProps> = () => {
   });
   const deleteHandler = (jobId: string) => {
     console.log('Deleting blog with ID:', jobId);
-
+    alert('Job Deleted successfully.');
     mutate(jobId, {
       onSuccess: (deletedJobId) => {
-        careerData?.filter((job: CareersDataProps) => job._id !== deletedJobId);
-
-        alert('Job Deleted successfully.');
+        careerData?.filter((job: JobsDataProps) => job._id !== deletedJobId);
         console.log('Deleted job');
       },
       onError: (error) => {
@@ -72,15 +68,7 @@ const CareersList: React.FC<CareersListProps> = () => {
       },
     });
   };
-  const theme = useContext(ThemeContext);
 
-  const primaryFontStyle = {
-    fontFamily: theme.primaryFont,
-  };
-
-  const secondaryFontStyle = {
-    fontFamily: theme.secondaryFont,
-  };
   const formatDate = (inputDate: Date) => {
     const date = new Date(inputDate);
     const day = date.getDate();
@@ -91,7 +79,7 @@ const CareersList: React.FC<CareersListProps> = () => {
   };
   const navigate = useNavigate();
   const handleAddButton = () => {
-    navigate('/createcareers');
+    navigate('/createjobs');
   };
   if (isLoading) {
     return <Loader />;
@@ -101,17 +89,9 @@ const CareersList: React.FC<CareersListProps> = () => {
     return <div>Error loading blog posts.</div>;
   }
   return (
-    <ContentContainer width={85}>
+    <ContentContainer width={80}>
       <div className={styles.bannerWrapper}>
-        <div className={styles.header} id="careers">
-          <h4 style={primaryFontStyle}>Careers</h4>
-          <p style={secondaryFontStyle}>
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industry's standard dummy text
-            ever since the 1500s.
-          </p>
-        </div>
-        <div className={styles.careers_list}>
+        <div className={styles.jobs_list}>
           <AddButton
             onClick={handleAddButton}
             width={17.5}
@@ -119,9 +99,9 @@ const CareersList: React.FC<CareersListProps> = () => {
             margin={1.2}
             name="New Job"
           />
-          {careerData?.map((careers: CareersDataProps) => (
+          {careerData?.map((jobs: JobsDataProps) => (
             <div className={styles.blogsList}>
-              <CareersListWrapper
+              <JobsListWrapper
                 contentSection={
                   <div>
                     <NavLink
@@ -132,26 +112,26 @@ const CareersList: React.FC<CareersListProps> = () => {
                         margin: '0em',
                       }}
                     >
-                      {careers.title}
+                      {jobs.title}
                     </NavLink>
                   </div>
                 }
-                location={<div>{careers.location}</div>}
-                contentDate={formatDate(careers.datePosted)}
-                jobType={careers.jobType}
+                location={<div>{jobs.location}</div>}
+                contentDate={formatDate(jobs.datePosted)}
+                jobType={jobs.jobType}
               >
                 <div>
-                  <NavLink to={`/careerslist/${careers?._id}`}>
+                  <NavLink to={`/jobs/${jobs?._id}`}>
                     <button className={styles.buttonEdit}>Edit</button>
                   </NavLink>
                   <button
                     className={styles.buttonDelete}
-                    onClick={() => deleteHandler(careers._id)}
+                    onClick={() => deleteHandler(jobs._id)}
                   >
                     Delete
                   </button>
                 </div>
-              </CareersListWrapper>
+              </JobsListWrapper>
             </div>
           ))}
         </div>
@@ -160,4 +140,4 @@ const CareersList: React.FC<CareersListProps> = () => {
   );
 };
 
-export default CareersList;
+export default JobsList;

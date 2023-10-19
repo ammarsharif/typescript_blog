@@ -5,7 +5,7 @@ import UploadImage from '../UploadImage/UploadImage';
 import ContentQuillSection from '../ContentQuillSection/ContentQuilSection';
 import { ThemeContext } from '../ReuseableComponents/ThemeContext/ThemeContext';
 import ContentContainer from '../ReuseableComponents/ContentContainer/ContentContainer';
-import { useLocation, useParams } from 'react-router';
+import { useLocation, useNavigate, useParams } from 'react-router';
 import { useQuery } from 'react-query';
 import axios from 'axios';
 import { BASE_API, BrowserRoutes } from '../../Constants/BrowseRoutes';
@@ -38,6 +38,7 @@ const fetchBlogByUrl = async (blogUrl: string) => {
 const BlogSection: React.FC<BlogSectionProps> = () => {
   const theme = useContext(ThemeContext);
   const { pathname } = useLocation();
+  const navigate = useNavigate();
   const [blogState, setBlogState] = useState<blogState>(initialBlogState);
   const [Loading, setLoading] = useState(false);
   const { blogUrl } = useParams();
@@ -82,6 +83,7 @@ const BlogSection: React.FC<BlogSectionProps> = () => {
           getHeadersData()
         );
         if (response.data.ok) {
+          navigate('/blogs');
           setLoading(false);
         }
         alert('Blog updated successfully.');
@@ -96,7 +98,7 @@ const BlogSection: React.FC<BlogSectionProps> = () => {
         };
         delete NewBlogState?._id;
         const response = await axios.post(
-          `${BASE_API}/api/blog `,
+          `${BASE_API}/api/blog`,
           NewBlogState,
           getHeadersData()
         );
@@ -105,6 +107,7 @@ const BlogSection: React.FC<BlogSectionProps> = () => {
         console.log(blog, 'Created Blog');
 
         if (response.data.ok) {
+          navigate('/blogs');
           setLoading(false);
         }
       } catch (error) {

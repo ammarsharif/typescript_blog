@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import styles from './CreateCareers.module.css';
+import styles from './Createjobs.module.css';
 import ContentContainer from '../ReuseableComponents/ContentContainer/ContentContainer';
-import { NavLink, useLocation, useParams } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { BASE_API, BrowserRoutes } from '../../Constants/BrowseRoutes';
 import axios from 'axios';
 import { useQuery } from 'react-query';
 import Loader from '../Loader/Loader';
 import { getHeadersData } from '../../Constants/Headers';
-interface CreateCareersProps {
+interface CreateJobsProps {
   primaryFont?: string;
   secondaryFont?: string;
   primaryColor?: string;
@@ -36,11 +37,12 @@ const fetchJobByUrl = async (jobUrl: string) => {
   return response.data.jobPost;
 };
 
-const CreateCareers: React.FC<CreateCareersProps> = () => {
+const Createjobs: React.FC<CreateJobsProps> = () => {
   const { pathname } = useLocation();
   const [jobData, setJobData] = useState<CreateJobProps>(initialJobState);
   const [Loading, setLoading] = useState(false);
   const { jobUrl } = useParams();
+  const navigate = useNavigate();
   const { data, isLoading, isError } = useQuery(['job', jobUrl], () => {
     if (jobUrl) {
       return fetchJobByUrl(jobUrl);
@@ -70,6 +72,7 @@ const CreateCareers: React.FC<CreateCareersProps> = () => {
           getHeadersData()
         );
         if (response.data.ok) {
+          navigate('/jobs');
           setLoading(false);
         }
         alert('Job updated successfully.');
@@ -92,6 +95,7 @@ const CreateCareers: React.FC<CreateCareersProps> = () => {
         console.log(blog, 'Created Job');
 
         if (response.data.ok) {
+          navigate('/jobs');
           setLoading(false);
         }
       } catch (error) {
@@ -121,10 +125,10 @@ const CreateCareers: React.FC<CreateCareersProps> = () => {
   };
   return (
     <ContentContainer width={70}>
-      <div data-testid="Create-Careers">
+      <div data-testid="Create-jobs">
         <div className={styles.header}>
           <h3 className={styles.heading}>
-            {pathname === BrowserRoutes.CREATECAREERS ? 'Add' : 'Edit'} Job
+            {pathname === BrowserRoutes.CREATEJOBS ? 'Add' : 'Edit'} Job
           </h3>
         </div>
         {Loading ? (
@@ -205,11 +209,10 @@ const CreateCareers: React.FC<CreateCareersProps> = () => {
                 onChange={handleStateChange}
               />
             </div>
-            <NavLink to={''}>
-              <button className={styles.formButton} onClick={handleSubmit}>
-                Submit
-              </button>
-            </NavLink>
+
+            <button className={styles.formButton} onClick={handleSubmit}>
+              Submit
+            </button>
           </form>
         )}
       </div>
@@ -217,4 +220,4 @@ const CreateCareers: React.FC<CreateCareersProps> = () => {
   );
 };
 
-export default CreateCareers;
+export default Createjobs;

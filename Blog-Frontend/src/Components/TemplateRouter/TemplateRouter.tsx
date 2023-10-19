@@ -6,8 +6,8 @@ import BlogList from '../BlogsList/BlogsList';
 import TemplateLayout from '../TemplateLayout/TemplateLayout';
 import BlogSection from '../BlogSection/BlogSection';
 import Signin from '../SignIn/SignIn';
-import CareersList from '../CareersList/CareersList';
-import CreateCareers from '../CreateCareers/CreateCareers';
+import JobsList from '../JobsList/JobsList';
+import Createjobs from '../CreateJobs/CreateJobs';
 const routerConfig = createBrowserRouter([
   {
     path: BrowserRoutes.HOME,
@@ -30,16 +30,16 @@ const routerConfig = createBrowserRouter([
         element: <Signin />,
       },
       {
-        path: `${BrowserRoutes.CAREERSLIST}`,
-        element: <CareersList />,
+        path: `${BrowserRoutes.JOBSLIST}`,
+        element: <JobsList />,
       },
       {
-        path: `${BrowserRoutes.CREATECAREERS}`,
-        element: <CreateCareers />,
+        path: `${BrowserRoutes.CREATEJOBS}`,
+        element: <Createjobs />,
       },
       {
-        path: `${BrowserRoutes.EDITCAREERS}`,
-        element: <CreateCareers />,
+        path: `${BrowserRoutes.EDITJOBS}`,
+        element: <Createjobs />,
       },
     ],
   },

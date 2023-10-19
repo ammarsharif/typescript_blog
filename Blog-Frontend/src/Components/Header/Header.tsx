@@ -43,17 +43,10 @@ const NavItems: React.FC = () => {
     <>
       <ul>
         <li>
-          <StyledNavLink to={BrowserRoutes.BLOGLIST}>BlogList</StyledNavLink>
+          <StyledNavLink to={BrowserRoutes.BLOGLIST}>Blogs</StyledNavLink>
         </li>
         <li>
-          <StyledNavLink to={BrowserRoutes.CAREERSLIST}>
-            CareersList
-          </StyledNavLink>
-        </li>
-        <li>
-          <StyledNavLink to={BrowserRoutes.CREATECAREERS}>
-            CreateCareers
-          </StyledNavLink>
+          <StyledNavLink to={BrowserRoutes.JOBSLIST}>Jobs</StyledNavLink>
         </li>
         <li>
           <StyledNavLink to={BrowserRoutes.SIGNIN}>SignIn</StyledNavLink>
@@ -62,7 +55,7 @@ const NavItems: React.FC = () => {
       <ul>
         <li>
           <StyledNavLink to={BrowserRoutes.HOME}>
-            <button style={buttonStyle}>Home</button>
+            <button style={buttonStyle}>Create Blog</button>
           </StyledNavLink>
         </li>
       </ul>

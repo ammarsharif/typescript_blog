@@ -3,7 +3,7 @@ import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import styles from './ContentQuillSection.module.css';
 import ContentContainer from '../ReuseableComponents/ContentContainer/ContentContainer';
-import { NavLink, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { BrowserRoutes } from '../../Constants/BrowseRoutes';
 interface Props {
   setBlogState: (content: string) => void;
@@ -37,11 +37,9 @@ const ContentQuilSection = ({ content, setBlogState, handleSubmit }: Props) => {
           />
         </div>
 
-        <NavLink to={'/blogslist'}>
-          <button className={styles['form-button']} onClick={handleSubmit}>
-            {pathname === BrowserRoutes.HOME ? 'Submit' : 'Update'}
-          </button>
-        </NavLink>
+        <button className={styles['form-button']} onClick={handleSubmit}>
+          {pathname === BrowserRoutes.HOME ? 'Submit' : 'Update'}
+        </button>
       </div>
     </ContentContainer>
   );

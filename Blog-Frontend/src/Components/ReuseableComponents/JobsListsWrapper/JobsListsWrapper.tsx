@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
 import { SlCalender } from 'react-icons/sl';
-import styles from './CareersListWrapper.module.css';
+import styles from './jobsListWrapper.module.css';
 import { ThemeContext } from '../ThemeContext/ThemeContext';
 
-interface CareersListWrapperProps {
+interface JobsListWrapperProps {
   imageSection?: React.ReactNode;
   contentSection?: React.ReactNode;
   contentDate?: React.ReactNode;
@@ -13,7 +13,7 @@ interface CareersListWrapperProps {
   children?: React.ReactElement;
 }
 
-const CareersListWrapper: React.FC<CareersListWrapperProps> = ({
+const JobsListWrapper: React.FC<JobsListWrapperProps> = ({
   contentSection,
   location,
   jobType,
@@ -26,9 +26,9 @@ const CareersListWrapper: React.FC<CareersListWrapperProps> = ({
   };
 
   return (
-    <div data-testid="CareerListWrapper" style={secondaryFontStyle}>
-      <div className={styles.careerList}>
-        <div className={styles.careerHeader}>
+    <div data-testid="jobListWrapper" style={secondaryFontStyle}>
+      <div className={styles.jobList}>
+        <div className={styles.jobHeader}>
           <div>
             <h4 style={{ color: '#0096FF' }}>{contentSection}</h4>
             <p className={styles.description}>{location}</p>
@@ -46,4 +46,4 @@ const CareersListWrapper: React.FC<CareersListWrapperProps> = ({
   );
 };
 
-export default CareersListWrapper;
+export default JobsListWrapper;

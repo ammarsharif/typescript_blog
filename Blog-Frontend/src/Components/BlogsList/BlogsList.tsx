@@ -43,6 +43,7 @@ const deleteBlog = async (blogId: string) => {
 
 const BlogList: React.FC = () => {
   const queryClient = useQueryClient();
+  const navigate = useNavigate();
   const {
     data: blogData,
     isLoading,
@@ -55,12 +56,12 @@ const BlogList: React.FC = () => {
   });
   const deleteHandler = (blogId: string) => {
     console.log('Deleting blog with ID:', blogId);
+    alert('Blog Deleted successfully.');
 
     mutate(blogId, {
       onSuccess: (deletedBlogId) => {
         blogData?.filter((blog: BlogsProps) => blog._id !== deletedBlogId);
 
-        alert('Blog Deleted successfully.');
         console.log('Deleted Blog');
       },
       onError: (error) => {
@@ -68,7 +69,7 @@ const BlogList: React.FC = () => {
       },
     });
   };
-  const navigate = useNavigate();
+
   const handleAddButton = () => {
     navigate('/');
   };
@@ -103,7 +104,7 @@ const BlogList: React.FC = () => {
                 }
               >
                 <div>
-                  <NavLink to={`/blogslist/${blog?.blogUrl}`}>
+                  <NavLink to={`/blogs/${blog?.blogUrl}`}>
                     <button>Edit</button>
                   </NavLink>
                   <button onClick={() => deleteHandler(blog._id)}>

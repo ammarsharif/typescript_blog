@@ -1,4 +1,4 @@
-.careerList {
+.jobList {
   border: 1px solid black;
   border-radius: 0.5em;
   width: 17.5em;
@@ -9,7 +9,7 @@
   margin: 20px;
 }
 
-.careerHeader {
+.jobHeader {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -20,8 +20,9 @@
   justify-content: space-between;
   margin: 0.5em 0em;
 }
-.careerHeader h4 {
+.jobHeader h4 {
   height: 2em;
+  width: 100%;
 }
 .description {
   font-weight: lighter !important;
@@ -36,22 +37,22 @@
   white-space: nowrap;
 }
 
-.careerList span {
+.jobList span {
   display: inline-block;
 }
 
 @media screen and (max-width: 25em) {
-  .careerHeader {
+  .jobHeader {
     flex-direction: column;
     align-items: flex-start;
   }
   .jobType {
     margin: 0em;
   }
-  .careerList {
+  .jobList {
     height: auto;
   }
-  .careerHeader h4 {
+  .jobHeader h4 {
     height: auto;
   }
 }
