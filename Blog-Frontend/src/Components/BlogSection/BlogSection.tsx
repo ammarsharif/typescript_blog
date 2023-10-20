@@ -11,6 +11,7 @@ import axios from 'axios';
 import { BASE_API, BrowserRoutes } from '../../Constants/BrowseRoutes';
 import { getHeadersData } from '../../Constants/Headers';
 import { ThemeProps, blogSectionProps } from '../GlobalTypes/GlobalTypes';
+import { fetchBlogByUrl } from '../../Constants/BlogQueries';
 
 const initialBlogState = {
   _id: '',
@@ -21,10 +22,6 @@ const initialBlogState = {
   blogContent: '',
 };
 
-const fetchBlogByUrl = async (blogUrl: string) => {
-  const response = await axios.get(`${BASE_API}/api/blog/${blogUrl}`);
-  return response.data.data;
-};
 const BlogSection: React.FC<ThemeProps> = () => {
   const theme = useContext(ThemeContext);
   const { pathname } = useLocation();

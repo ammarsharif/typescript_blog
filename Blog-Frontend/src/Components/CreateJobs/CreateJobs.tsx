@@ -9,6 +9,7 @@ import { useQuery } from 'react-query';
 import Loader from '../Loader/Loader';
 import { getHeadersData } from '../../Constants/Headers';
 import { CreateJobProps, ThemeProps } from '../GlobalTypes/GlobalTypes';
+import { fetchJobByUrl } from '../../Constants/JobQueries';
 
 const initialJobState = {
   _id: '',
@@ -18,11 +19,6 @@ const initialJobState = {
   jobType: '',
   requirements: [],
   offers: [],
-};
-
-const fetchJobByUrl = async (jobUrl: string) => {
-  const response = await axios.get(`${BASE_API}/api/job/${jobUrl}`);
-  return response.data.jobPost;
 };
 
 const CreateJobs: React.FC<ThemeProps> = () => {

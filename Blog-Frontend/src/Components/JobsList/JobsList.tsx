@@ -3,37 +3,17 @@ import ContentContainer from '../ReuseableComponents/ContentContainer/ContentCon
 import JobsListWrapper from '../ReuseableComponents/JobsListsWrapper/JobsListsWrapper';
 import { NavLink, useNavigate } from 'react-router-dom';
 import AddButton from '../AddButton/AddButton';
-import axios from 'axios';
 import { useMutation, useQuery, useQueryClient } from 'react-query';
-import { BASE_API } from '../../Constants/BrowseRoutes';
 import Loader from '../Loader/Loader';
-import { getHeadersData } from '../../Constants/Headers';
 import { JobsDataProps, ThemeProps } from '../GlobalTypes/GlobalTypes';
+import { deleteJob, fetchCareerData } from '../../Constants/JobQueries';
+import Pagination from '../Pagination/Pagination';
+import { useState } from 'react';
 
-const fetchCareerData = async () => {
-  const response = await axios.get(`${BASE_API}/api/jobs`);
-  if (response.data.ok) {
-    return response.data.jobPosts;
-  } else {
-    throw new Error('Error fetching blog data');
-  }
-};
-const deleteJob = async (jobId: string) => {
-  const response = await axios.delete(
-    `${BASE_API}/api/job/${jobId}`,
-    getHeadersData()
-  );
-
-  if (response.status === 204) {
-    return jobId;
-  } else {
-    throw new Error(`Unexpected status code: ${response.status}`);
-  }
-};
 const JobsList: React.FC<ThemeProps> = () => {
   const queryClient = useQueryClient();
   const {
-    data: careerData,
+    data: jobData,
     isLoading,
     isError,
   } = useQuery('blogs', fetchCareerData);
@@ -42,12 +22,24 @@ const JobsList: React.FC<ThemeProps> = () => {
       queryClient.invalidateQueries('blogs');
     },
   });
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 4;
+  const totalPages = Math.ceil(jobData?.length / itemsPerPage);
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const jobsDisplay = jobData?.slice(startIndex, endIndex);
+
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+    window.scrollTo({ top: 0 });
+  };
+
   const deleteHandler = (jobId: string) => {
     console.log('Deleting blog with ID:', jobId);
     alert('Job Deleted successfully.');
     mutate(jobId, {
       onSuccess: (deletedJobId) => {
-        careerData?.filter((job: JobsDataProps) => job._id !== deletedJobId);
+        jobData?.filter((job: JobsDataProps) => job._id !== deletedJobId);
         console.log('Deleted job');
       },
       onError: (error) => {
@@ -86,7 +78,7 @@ const JobsList: React.FC<ThemeProps> = () => {
             margin={1.2}
             name="New Job"
           />
-          {careerData?.map((jobs: JobsDataProps) => (
+          {jobsDisplay?.map((jobs: JobsDataProps) => (
             <div className={styles.blogsList}>
               <JobsListWrapper
                 contentSection={
@@ -123,6 +115,11 @@ const JobsList: React.FC<ThemeProps> = () => {
           ))}
         </div>
       </div>
+      <Pagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+        handlePageChange={handlePageChange}
+      />
     </ContentContainer>
   );
 };
