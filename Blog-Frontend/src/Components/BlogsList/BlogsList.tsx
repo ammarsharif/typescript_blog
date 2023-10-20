@@ -18,7 +18,9 @@ const BlogList: React.FC = () => {
     data: blogData,
     isLoading,
     isError,
-  } = useQuery('blogs', fetchBlogData);
+  } = useQuery('blogs', fetchBlogData, {
+    cacheTime: 5000,
+  });
   const { mutate } = useMutation(deleteBlog, {
     onSettled: () => {
       queryClient.invalidateQueries('blogs');

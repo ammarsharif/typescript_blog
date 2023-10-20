@@ -16,12 +16,15 @@ const JobsList: React.FC<ThemeProps> = () => {
     data: jobData,
     isLoading,
     isError,
-  } = useQuery('blogs', fetchCareerData);
+  } = useQuery('jobs', fetchCareerData, {
+    cacheTime: 5000,
+  });
   const { mutate } = useMutation(deleteJob, {
     onSettled: () => {
-      queryClient.invalidateQueries('blogs');
+      queryClient.invalidateQueries('jobs');
     },
   });
+
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 4;
   const totalPages = Math.ceil(jobData?.length / itemsPerPage);
