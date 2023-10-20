@@ -8,10 +8,12 @@ import axios from 'axios';
 import { useQuery } from 'react-query';
 import Loader from '../Loader/Loader';
 import { getHeadersData } from '../../Constants/Headers';
-import { CreateJobProps, ThemeProps } from '../GlobalTypes/GlobalTypes';
+import { JobProps, ThemeProps } from '../GlobalTypes/GlobalTypes';
 import { fetchJobByUrl } from '../../Constants/JobQueries';
-
-const initialJobState = {
+export interface ModifiedCreateJobProps extends Omit<JobProps, 'datePosted'> {
+  _id?: string;
+}
+const initialJobState: ModifiedCreateJobProps = {
   _id: '',
   title: '',
   location: '',
@@ -23,7 +25,8 @@ const initialJobState = {
 
 const CreateJobs: React.FC<ThemeProps> = () => {
   const { pathname } = useLocation();
-  const [jobData, setJobData] = useState<CreateJobProps>(initialJobState);
+  const [jobData, setJobData] =
+    useState<ModifiedCreateJobProps>(initialJobState);
   const [Loading, setLoading] = useState(false);
   const { jobUrl } = useParams();
   const navigate = useNavigate();

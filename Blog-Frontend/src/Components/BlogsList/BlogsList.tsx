@@ -7,10 +7,12 @@ import { useNavigate } from 'react-router-dom';
 import { useQuery, useMutation, useQueryClient } from 'react-query';
 import AddButton from '../AddButton/AddButton';
 import Loader from '../Loader/Loader';
-import { BlogsListProps } from '../GlobalTypes/GlobalTypes';
+import { blogListProps } from '../GlobalTypes/GlobalTypes';
 import { deleteBlog, fetchBlogData } from '../../Constants/BlogQueries';
 import Pagination from '../Pagination/Pagination';
-
+export interface ModifiedBlogListProps extends blogListProps {
+  _id: string;
+}
 const BlogList: React.FC = () => {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
@@ -45,7 +47,9 @@ const BlogList: React.FC = () => {
 
     mutate(blogId, {
       onSuccess: (deletedBlogId) => {
-        blogData?.filter((blog: BlogsListProps) => blog._id !== deletedBlogId);
+        blogData?.filter(
+          (blog: ModifiedBlogListProps) => blog._id !== deletedBlogId
+        );
 
         console.log('Deleted Blog');
       },
@@ -77,7 +81,7 @@ const BlogList: React.FC = () => {
             margin={2.7}
             name="New Blog"
           />
-          {blogsDisplay?.map((blog: BlogsListProps, index: string) => (
+          {blogsDisplay?.map((blog: ModifiedBlogListProps, index: string) => (
             <div className={styles.blogsList} key={index}>
               <Blog
                 imageSection={<img src={blog?.blogImageUrl} alt="BlogImage" />}

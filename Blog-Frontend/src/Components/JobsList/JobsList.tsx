@@ -5,11 +5,13 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import AddButton from '../AddButton/AddButton';
 import { useMutation, useQuery, useQueryClient } from 'react-query';
 import Loader from '../Loader/Loader';
-import { JobsDataProps, ThemeProps } from '../GlobalTypes/GlobalTypes';
+import { JobProps, ThemeProps } from '../GlobalTypes/GlobalTypes';
 import { deleteJob, fetchCareerData } from '../../Constants/JobQueries';
 import Pagination from '../Pagination/Pagination';
 import { useState } from 'react';
-
+export interface ModifiedJobListProps extends JobProps {
+  _id: string;
+}
 const JobsList: React.FC<ThemeProps> = () => {
   const queryClient = useQueryClient();
   const {
@@ -42,7 +44,9 @@ const JobsList: React.FC<ThemeProps> = () => {
     alert('Job Deleted successfully.');
     mutate(jobId, {
       onSuccess: (deletedJobId) => {
-        jobData?.filter((job: JobsDataProps) => job._id !== deletedJobId);
+        jobData?.filter(
+          (job: ModifiedJobListProps) => job._id !== deletedJobId
+        );
         console.log('Deleted job');
       },
       onError: (error) => {
@@ -81,7 +85,7 @@ const JobsList: React.FC<ThemeProps> = () => {
             margin={1.2}
             name="New Job"
           />
-          {jobsDisplay?.map((jobs: JobsDataProps) => (
+          {jobsDisplay?.map((jobs: ModifiedJobListProps) => (
             <div className={styles.blogsList}>
               <JobsListWrapper
                 contentSection={

@@ -10,10 +10,12 @@ import { useQuery } from 'react-query';
 import axios from 'axios';
 import { BASE_API, BrowserRoutes } from '../../Constants/BrowseRoutes';
 import { getHeadersData } from '../../Constants/Headers';
-import { ThemeProps, blogSectionProps } from '../GlobalTypes/GlobalTypes';
+import { ThemeProps, blogListProps } from '../GlobalTypes/GlobalTypes';
 import { fetchBlogByUrl } from '../../Constants/BlogQueries';
-
-const initialBlogState = {
+export interface ModifiedBlogSectionProps extends blogListProps {
+  _id?: string;
+}
+const initialBlogState: ModifiedBlogSectionProps = {
   _id: '',
   blogTitle: '',
   blogAuthor: '',
@@ -27,7 +29,7 @@ const BlogSection: React.FC<ThemeProps> = () => {
   const { pathname } = useLocation();
   const navigate = useNavigate();
   const [blogState, setBlogState] =
-    useState<blogSectionProps>(initialBlogState);
+    useState<ModifiedBlogSectionProps>(initialBlogState);
   const [Loading, setLoading] = useState(false);
   const { blogUrl } = useParams();
   function createURLFromTitle(blogTitle: string) {
