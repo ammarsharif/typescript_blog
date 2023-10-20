@@ -53,10 +53,17 @@ const CreateJobs: React.FC<ThemeProps> = () => {
     e.preventDefault();
     if (jobData._id) {
       try {
+        const updateJob = {
+          ...jobData,
+          requirements: jobData.requirements.filter(
+            (requirement) => requirement
+          ),
+          offers: jobData.offers.filter((offer) => offer),
+        };
         console.log(typeof jobData.offers);
         const response = await axios.put(
           `${BASE_API}/api/job/${jobData._id}`,
-          jobData,
+          updateJob,
           getHeadersData()
         );
         if (response.data.ok) {
@@ -71,6 +78,10 @@ const CreateJobs: React.FC<ThemeProps> = () => {
       try {
         const createJob = {
           ...jobData,
+          requirements: jobData.requirements.filter(
+            (requirement) => requirement
+          ),
+          offers: jobData.offers.filter((offer) => offer),
         };
         delete createJob._id;
         const response = await axios.post(
@@ -105,7 +116,7 @@ const CreateJobs: React.FC<ThemeProps> = () => {
   ) => {
     const { name, value } = e.target;
     if (name === 'offers' || name === 'requirements') {
-      const valueArray = value.split('\n');
+      let valueArray = value.split('\n');
       setJobData({ ...jobData, [name]: valueArray });
     } else {
       setJobData({ ...jobData, [name]: value });
