@@ -16,8 +16,8 @@ const initialJobState = {
   location: '',
   description: '',
   jobType: '',
-  requirements: '',
-  offers: '',
+  requirements: [],
+  offers: [],
 };
 
 const fetchJobByUrl = async (jobUrl: string) => {
@@ -25,7 +25,7 @@ const fetchJobByUrl = async (jobUrl: string) => {
   return response.data.jobPost;
 };
 
-const Createjobs: React.FC<ThemeProps> = () => {
+const CreateJobs: React.FC<ThemeProps> = () => {
   const { pathname } = useLocation();
   const [jobData, setJobData] = useState<CreateJobProps>(initialJobState);
   const [Loading, setLoading] = useState(false);
@@ -208,4 +208,4 @@ const Createjobs: React.FC<ThemeProps> = () => {
   );
 };
 
-export default Createjobs;
+export default CreateJobs;

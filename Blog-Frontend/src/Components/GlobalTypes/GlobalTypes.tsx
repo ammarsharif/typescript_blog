@@ -22,8 +22,8 @@ export interface CreateJobProps {
   location: string;
   description: string;
   jobType: string;
-  requirements: string;
-  offers: string;
+  requirements: string[];
+  offers: string[];
 }
 export interface JobsDataProps {
   _id: string;
@@ -31,8 +31,8 @@ export interface JobsDataProps {
   location?: string;
   description?: string;
   jobType?: string;
-  requirements?: string;
-  offers?: string;
+  requirements?: string[];
+  offers?: string[];
   datePosted: Date;
 }
 export interface JobsListWrapperProps {
