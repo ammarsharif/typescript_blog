@@ -2,16 +2,7 @@ import React, { useContext } from 'react';
 import { SlCalender } from 'react-icons/sl';
 import styles from './jobsListWrapper.module.css';
 import { ThemeContext } from '../ThemeContext/ThemeContext';
-
-interface JobsListWrapperProps {
-  imageSection?: React.ReactNode;
-  contentSection?: React.ReactNode;
-  contentDate?: React.ReactNode;
-  location?: React.ReactNode;
-  jobType?: React.ReactNode;
-  secondaryFont?: string;
-  children?: React.ReactElement;
-}
+import { JobsListWrapperProps } from '../../GlobalTypes/GlobalTypes';
 
 const JobsListWrapper: React.FC<JobsListWrapperProps> = ({
   contentSection,

@@ -8,38 +8,25 @@ import axios from 'axios';
 import { useQuery } from 'react-query';
 import Loader from '../Loader/Loader';
 import { getHeadersData } from '../../Constants/Headers';
-interface CreateJobsProps {
-  primaryFont?: string;
-  secondaryFont?: string;
-  primaryColor?: string;
-}
-interface CreateJobProps {
+import { JobProps, ThemeProps } from '../GlobalTypes/GlobalTypes';
+import { fetchJobByUrl } from '../../Constants/JobQueries';
+export interface ModifiedCreateJobProps extends Omit<JobProps, 'datePosted'> {
   _id?: string;
-  title: string;
-  location: string;
-  description: string;
-  jobType: string;
-  requirements: string;
-  offers: string;
 }
-const initialJobState = {
+const initialJobState: ModifiedCreateJobProps = {
   _id: '',
   title: '',
   location: '',
   description: '',
   jobType: '',
-  requirements: '',
-  offers: '',
+  requirements: [],
+  offers: [],
 };
 
-const fetchJobByUrl = async (jobUrl: string) => {
-  const response = await axios.get(`${BASE_API}/api/job/${jobUrl}`);
-  return response.data.jobPost;
-};
-
-const Createjobs: React.FC<CreateJobsProps> = () => {
+const CreateJobs: React.FC<ThemeProps> = () => {
   const { pathname } = useLocation();
-  const [jobData, setJobData] = useState<CreateJobProps>(initialJobState);
+  const [jobData, setJobData] =
+    useState<ModifiedCreateJobProps>(initialJobState);
   const [Loading, setLoading] = useState(false);
   const { jobUrl } = useParams();
   const navigate = useNavigate();
@@ -65,10 +52,17 @@ const Createjobs: React.FC<CreateJobsProps> = () => {
     e.preventDefault();
     if (jobData._id) {
       try {
+        const updateJob = {
+          ...jobData,
+          requirements: jobData.requirements.filter(
+            (requirement) => requirement
+          ),
+          offers: jobData.offers.filter((offer) => offer),
+        };
         console.log(typeof jobData.offers);
         const response = await axios.put(
           `${BASE_API}/api/job/${jobData._id}`,
-          jobData,
+          updateJob,
           getHeadersData()
         );
         if (response.data.ok) {
@@ -83,6 +77,10 @@ const Createjobs: React.FC<CreateJobsProps> = () => {
       try {
         const createJob = {
           ...jobData,
+          requirements: jobData.requirements.filter(
+            (requirement) => requirement
+          ),
+          offers: jobData.offers.filter((offer) => offer),
         };
         delete createJob._id;
         const response = await axios.post(
@@ -162,7 +160,7 @@ const Createjobs: React.FC<CreateJobsProps> = () => {
             <div>
               <label className={styles.formLabel}>Job Type:</label>
               <select
-                className={styles.textarea}
+                className={styles.selector}
                 name="jobType"
                 value={jobData.jobType}
                 onChange={handleStateChange}
@@ -176,7 +174,7 @@ const Createjobs: React.FC<CreateJobsProps> = () => {
             <div>
               <label className={styles.formLabel}>Description:</label>
               <textarea
-                className={styles.textarea}
+                className={styles.descriptionArea}
                 name="description"
                 value={jobData.description}
                 placeholder="Description"
@@ -220,4 +218,4 @@ const Createjobs: React.FC<CreateJobsProps> = () => {
   );
 };
 
-export default Createjobs;
+export default CreateJobs;

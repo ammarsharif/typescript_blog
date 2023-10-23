@@ -7,7 +7,7 @@ import TemplateLayout from '../TemplateLayout/TemplateLayout';
 import BlogSection from '../BlogSection/BlogSection';
 import Signin from '../SignIn/SignIn';
 import JobsList from '../JobsList/JobsList';
-import Createjobs from '../CreateJobs/CreateJobs';
+import CreateJobs from '../CreateJobs/CreateJobs';
 const routerConfig = createBrowserRouter([
   {
     path: BrowserRoutes.HOME,
@@ -35,11 +35,11 @@ const routerConfig = createBrowserRouter([
       },
       {
         path: `${BrowserRoutes.CREATEJOBS}`,
-        element: <Createjobs />,
+        element: <CreateJobs />,
       },
       {
         path: `${BrowserRoutes.EDITJOBS}`,
-        element: <Createjobs />,
+        element: <CreateJobs />,
       },
     ],
   },

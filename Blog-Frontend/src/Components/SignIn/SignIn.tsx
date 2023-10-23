@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styles from './Signin.module.css';
 import ContentContainer from '../ReuseableComponents/ContentContainer/ContentContainer';
 import PanelSection from '../ReuseableComponents/PanelSection/PanelSection';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { BASE_API } from '../../Constants/BrowseRoutes';
 import axios from 'axios';
 
@@ -22,14 +22,14 @@ const Signin: React.FC = () => {
     } catch (error) {
       console.error('Error deleting the blog post:', error);
     }
-    navigate('/blogslist');
+    navigate('/blogs');
   };
 
   const handleStateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUser({ ...user, [e.target.name]: e.target.value });
   };
   return (
-    <ContentContainer width={50}>
+    <ContentContainer width={30}>
       <PanelSection>
         <div className={styles['signin-Form']} data-testid="Signin-From">
           <div className={styles['signin_container']}>
@@ -58,11 +58,9 @@ const Signin: React.FC = () => {
                 />
               </div>
               <div className={styles['form-button']}>
-                <NavLink to={''}>
-                  <button type="submit" onClick={handleSubmit}>
-                    Submit
-                  </button>
-                </NavLink>
+                <button type="submit" onClick={handleSubmit}>
+                  Submit
+                </button>
               </div>
             </form>
           </div>

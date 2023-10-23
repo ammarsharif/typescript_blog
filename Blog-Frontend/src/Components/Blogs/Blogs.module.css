@@ -32,7 +32,7 @@
 
 .bannerList img {
   display: block;
-  width: 20em;
+  width: 19em;
   height: 12.5em;
   filter: brightness(50%);
   border-radius: 0.5em;
@@ -66,4 +66,6 @@
   .dateBlog {
     margin-left: 1em;
   }
+}
+@media screen and (max-width: 62em) {
 }

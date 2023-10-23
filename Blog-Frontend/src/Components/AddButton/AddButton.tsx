@@ -1,13 +1,7 @@
 import React from 'react';
 import styles from './AddButton.module.css';
-interface AddButtonProps {
-  width?: number;
-  height?: number;
-  margin?: number;
-  className?: string;
-  name?: string;
-  onClick: () => void;
-}
+import { AddButtonProps } from '../GlobalTypes/GlobalTypes';
+
 const AddButton: React.FC<AddButtonProps> = ({
   onClick,
   width = 20,

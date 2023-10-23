@@ -1,46 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Blog from '../Blogs/Blogs';
 import styles from './BlogsList.module.css';
 import { NavLink } from 'react-router-dom';
 import ContentContainer from '../ReuseableComponents/ContentContainer/ContentContainer';
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useQuery, useMutation, useQueryClient } from 'react-query';
-import { BASE_API } from '../../Constants/BrowseRoutes';
 import AddButton from '../AddButton/AddButton';
-import { getHeadersData } from '../../Constants/Headers';
 import Loader from '../Loader/Loader';
-interface BlogsProps {
+import { blogListProps } from '../GlobalTypes/GlobalTypes';
+import { deleteBlog, fetchBlogData } from '../../Constants/BlogQueries';
+import Pagination from '../Pagination/Pagination';
+export interface ModifiedBlogListProps extends blogListProps {
   _id: string;
-  blogImageUrl: string;
-  blogTitle: string;
-  blogAuthor: string;
-  blogSummary: string;
-  blogContent: string;
-  blogUrl: string;
 }
-const fetchBlogData = async () => {
-  const response = await axios.get(`${BASE_API}/api/blogs`);
-  if (response.data.ok) {
-    return response.data.data;
-  } else {
-    throw new Error('Error fetching blog data');
-  }
-};
-
-const deleteBlog = async (blogId: string) => {
-  const response = await axios.delete(
-    `${BASE_API}/api/blog/${blogId}`,
-    getHeadersData()
-  );
-
-  if (response.status === 204) {
-    return blogId;
-  } else {
-    throw new Error(`Unexpected status code: ${response.status}`);
-  }
-};
-
 const BlogList: React.FC = () => {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
@@ -48,19 +20,36 @@ const BlogList: React.FC = () => {
     data: blogData,
     isLoading,
     isError,
-  } = useQuery('blogs', fetchBlogData);
+  } = useQuery('blogs', fetchBlogData, {
+    cacheTime: 5000,
+  });
   const { mutate } = useMutation(deleteBlog, {
     onSettled: () => {
       queryClient.invalidateQueries('blogs');
     },
   });
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 5;
+  const totalPages = Math.ceil(blogData?.length / itemsPerPage);
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const blogsDisplay = blogData?.slice(startIndex, endIndex);
+
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+    window.scrollTo({ top: 0 });
+  };
+
   const deleteHandler = (blogId: string) => {
     console.log('Deleting blog with ID:', blogId);
     alert('Blog Deleted successfully.');
 
     mutate(blogId, {
       onSuccess: (deletedBlogId) => {
-        blogData?.filter((blog: BlogsProps) => blog._id !== deletedBlogId);
+        blogData?.filter(
+          (blog: ModifiedBlogListProps) => blog._id !== deletedBlogId
+        );
 
         console.log('Deleted Blog');
       },
@@ -82,18 +71,17 @@ const BlogList: React.FC = () => {
   }
 
   return (
-    <ContentContainer width={100}>
+    <ContentContainer width={75}>
       <div className={styles['blog_container']}>
-        <h1>Blog List</h1>
         <div className={styles['blog_list']}>
           <AddButton
             onClick={handleAddButton}
-            width={18}
+            width={17.7}
             height={11}
             margin={2.7}
             name="New Blog"
           />
-          {blogData?.map((blog: BlogsProps, index: string) => (
+          {blogsDisplay?.map((blog: ModifiedBlogListProps, index: string) => (
             <div className={styles.blogsList} key={index}>
               <Blog
                 imageSection={<img src={blog?.blogImageUrl} alt="BlogImage" />}
@@ -115,6 +103,11 @@ const BlogList: React.FC = () => {
             </div>
           ))}
         </div>
+        <Pagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          handlePageChange={handlePageChange}
+        />
       </div>
     </ContentContainer>
   );

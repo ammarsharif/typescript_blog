@@ -10,15 +10,12 @@ import { useQuery } from 'react-query';
 import axios from 'axios';
 import { BASE_API, BrowserRoutes } from '../../Constants/BrowseRoutes';
 import { getHeadersData } from '../../Constants/Headers';
-interface blogState {
+import { ThemeProps, blogListProps } from '../GlobalTypes/GlobalTypes';
+import { fetchBlogByUrl } from '../../Constants/BlogQueries';
+export interface ModifiedBlogSectionProps extends blogListProps {
   _id?: string;
-  blogTitle: string;
-  blogAuthor: string;
-  blogSummary: string;
-  blogImageUrl: string;
-  blogContent: string;
 }
-const initialBlogState = {
+const initialBlogState: ModifiedBlogSectionProps = {
   _id: '',
   blogTitle: '',
   blogAuthor: '',
@@ -26,20 +23,13 @@ const initialBlogState = {
   blogImageUrl: '',
   blogContent: '',
 };
-interface BlogSectionProps {
-  primaryFont?: string;
-  secondaryFont?: string;
-  primaryColor?: string;
-}
-const fetchBlogByUrl = async (blogUrl: string) => {
-  const response = await axios.get(`${BASE_API}/api/blog/${blogUrl}`);
-  return response.data.data;
-};
-const BlogSection: React.FC<BlogSectionProps> = () => {
+
+const BlogSection: React.FC<ThemeProps> = () => {
   const theme = useContext(ThemeContext);
   const { pathname } = useLocation();
   const navigate = useNavigate();
-  const [blogState, setBlogState] = useState<blogState>(initialBlogState);
+  const [blogState, setBlogState] =
+    useState<ModifiedBlogSectionProps>(initialBlogState);
   const [Loading, setLoading] = useState(false);
   const { blogUrl } = useParams();
   function createURLFromTitle(blogTitle: string) {
@@ -131,7 +121,7 @@ const BlogSection: React.FC<BlogSectionProps> = () => {
     fontFamily: theme.primaryFont,
   };
   return (
-    <ContentContainer width={70}>
+    <ContentContainer width={80}>
       <div className={styles.bannerWrapper}>
         <div className={styles.header}>
           <h3 style={primaryFontStyle} className={styles.heading}>
