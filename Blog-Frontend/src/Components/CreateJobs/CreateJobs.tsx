@@ -115,7 +115,7 @@ const CreateJobs: React.FC<ThemeProps> = () => {
   ) => {
     const { name, value } = e.target;
     if (name === 'offers' || name === 'requirements') {
-      let valueArray = value.split('\n');
+      const valueArray = value.split('\n');
       setJobData({ ...jobData, [name]: valueArray });
     } else {
       setJobData({ ...jobData, [name]: value });
