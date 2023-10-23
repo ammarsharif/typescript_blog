@@ -160,7 +160,7 @@ const CreateJobs: React.FC<ThemeProps> = () => {
             <div>
               <label className={styles.formLabel}>Job Type:</label>
               <select
-                className={styles.textarea}
+                className={styles.selector}
                 name="jobType"
                 value={jobData.jobType}
                 onChange={handleStateChange}
@@ -174,7 +174,7 @@ const CreateJobs: React.FC<ThemeProps> = () => {
             <div>
               <label className={styles.formLabel}>Description:</label>
               <textarea
-                className={styles.textarea}
+                className={styles.descriptionArea}
                 name="description"
                 value={jobData.description}
                 placeholder="Description"

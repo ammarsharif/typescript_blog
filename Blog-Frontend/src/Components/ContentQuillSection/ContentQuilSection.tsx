@@ -23,7 +23,7 @@ const ContentQuilSection = ({ content, setBlogState, handleSubmit }: Props) => {
   };
 
   return (
-    <ContentContainer width={70}>
+    <ContentContainer width={100}>
       <div className={styles['quill_header']}>
         <div>
           <label style={{ marginTop: '2em' }}>Content:</label>

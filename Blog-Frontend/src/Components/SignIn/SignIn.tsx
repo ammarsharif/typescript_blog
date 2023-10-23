@@ -29,7 +29,7 @@ const Signin: React.FC = () => {
     setUser({ ...user, [e.target.name]: e.target.value });
   };
   return (
-    <ContentContainer width={50}>
+    <ContentContainer width={30}>
       <PanelSection>
         <div className={styles['signin-Form']} data-testid="Signin-From">
           <div className={styles['signin_container']}>

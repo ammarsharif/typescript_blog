@@ -22,7 +22,7 @@
 
 .formInput {
   width: 97.2%;
-  padding: 1.4em 1em;
+  padding: 1em 1em;
   margin: 0.7em 0;
   margin-right: 0.5em !important;
   font-size: 0.9em;
@@ -31,13 +31,33 @@
 }
 .textarea {
   width: 100%;
-  padding: 1.4em 1em;
+  height: 10em;
+  padding: 1em 1em;
   margin: 0.7em 0;
+  columns: 20;
   font-size: 0.9em;
   border: 1px solid #dadada;
   border-radius: 4px;
 }
-
+.selector {
+  width: 100%;
+  padding: 1em 1em;
+  margin: 0.7em 0;
+  columns: 20;
+  font-size: 0.9em;
+  border: 1px solid #dadada;
+  border-radius: 4px;
+}
+.descriptionArea {
+  width: 100%;
+  height: 5em;
+  padding: 1em 1em;
+  margin: 0.7em 0;
+  columns: 20;
+  font-size: 0.9em;
+  border: 1px solid #dadada;
+  border-radius: 4px;
+}
 .formButton {
   background-color: #9c001a;
   color: #ffff;
