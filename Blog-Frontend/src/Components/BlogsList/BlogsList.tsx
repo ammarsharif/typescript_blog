@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Blog from '../Blogs/Blogs';
 import styles from './BlogsList.module.css';
 import { NavLink } from 'react-router-dom';
 import ContentContainer from '../ReuseableComponents/ContentContainer/ContentContainer';
@@ -10,6 +9,7 @@ import Loader from '../Loader/Loader';
 import { blogListProps } from '../GlobalTypes/GlobalTypes';
 import { deleteBlog, fetchBlogData } from '../../Constants/BlogQueries';
 import Pagination from '../Pagination/Pagination';
+import Blog from '../ReuseableComponents/Blogs/Blogs';
 export interface ModifiedBlogListProps extends blogListProps {
   _id: string;
 }

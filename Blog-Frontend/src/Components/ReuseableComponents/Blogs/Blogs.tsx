@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import styles from './Blogs.module.css';
-import { ThemeContext } from '../ReuseableComponents/ThemeContext/ThemeContext';
-import { BlogProps } from '../GlobalTypes/GlobalTypes';
+import { BlogProps } from '../../GlobalTypes/GlobalTypes';
+import { ThemeContext } from '../ThemeContext/ThemeContext';
 
 const Blog: React.FC<BlogProps> = ({
   contentSection,
@@ -14,10 +14,12 @@ const Blog: React.FC<BlogProps> = ({
   };
   return (
     <div data-testid="BlogListWrapper" style={secondaryFontStyle}>
-      <div className={styles.bannerList}>
+      <div className={styles.bannerList} data-testid="BlogListWrapper-image">
         {imageSection}
         <div className={styles.dataBlog}>
-          <h4 style={{ color: '#ffff' }}>{contentSection}</h4>
+          <h4 style={{ color: '#ffff' }} data-testid="BlogListWrapper-content">
+            {contentSection}
+          </h4>
           <div className={styles.buttonList}>{children}</div>
         </div>
       </div>

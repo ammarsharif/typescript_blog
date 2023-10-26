@@ -3,7 +3,7 @@ import React from 'react';
 interface ContentContainerProps {
   width?: number;
   className?: string;
-  children: React.ReactNode;
+  children?: React.ReactNode;
 }
 
 const ContentContainer: React.FC<ContentContainerProps> = ({

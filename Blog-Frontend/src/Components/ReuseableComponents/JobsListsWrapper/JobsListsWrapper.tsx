@@ -21,15 +21,31 @@ const JobsListWrapper: React.FC<JobsListWrapperProps> = ({
       <div className={styles.jobList}>
         <div className={styles.jobHeader}>
           <div>
-            <h4 style={{ color: '#0096FF' }}>{contentSection}</h4>
-            <p className={styles.description}>{location}</p>
+            <h4
+              style={{ color: '#0096FF' }}
+              data-testid="jobListWrapper-contentSection"
+            >
+              {contentSection}
+            </h4>
+            <p
+              className={styles.description}
+              data-testid="jobListWrapper-location"
+            >
+              {location}
+            </p>
           </div>
-          <p className={styles.jobType}>{jobType}</p>
+          <p className={styles.jobType} data-testid="jobListWrapper-jobType">
+            {jobType}
+          </p>
         </div>
         <div className={styles.buttonList}>{children}</div>
         <div>
-          <span style={{ color: '#b3b1b1' }}>
-            <SlCalender /> {contentDate}
+          <span
+            style={{ color: '#b3b1b1' }}
+            data-testid="jobListWrapper-contentDate"
+          >
+            <SlCalender />
+            {contentDate}
           </span>
         </div>
       </div>
