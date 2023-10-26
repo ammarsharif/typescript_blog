@@ -47,11 +47,12 @@ const UploadImage = ({ imageUrl, setBlogState }: Props) => {
   };
 
   const handleRemoveImage = () => {
+    setBlogState('');
     setSelectedImage(null);
   };
 
   return (
-    <div className={styles['image-upload-container']}>
+    <div className={styles.imageUploadContainer} data-testid="fileInput">
       <input
         id="fileInput"
         type="file"
@@ -60,25 +61,24 @@ const UploadImage = ({ imageUrl, setBlogState }: Props) => {
         style={{ display: 'none' }}
       />
 
-      <div
-        className={styles['custom-logo-container']}
-        onClick={handleLogoClick}
-      >
+      <div className={styles.customLogoContainer} onClick={handleLogoClick}>
         {selectedImage ? (
           <>
             <img
-              className={styles['image-preview']}
+              className={styles.imagePreview}
               src={
                 typeof selectedImage === 'string'
                   ? selectedImage
                   : URL.createObjectURL(selectedImage as File)
               }
+              data-testid="selectedImage"
               alt="Uploaded Preview"
             />
 
             <button
-              className={styles['remove-button']}
+              className={styles.removeButton}
               onClick={handleRemoveImage}
+              data-testid="removeButton"
             >
               Remove
             </button>
@@ -88,6 +88,7 @@ const UploadImage = ({ imageUrl, setBlogState }: Props) => {
             className={styles['custom-logo']}
             src={image}
             alt="Upload Logo"
+            data-testid="altImage"
           />
         )}
       </div>

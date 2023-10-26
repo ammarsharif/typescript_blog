@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from 'react';
 import styles from './BlogSection.module.css';
 import CreateBlog from '../CreateBlog/CreateBlog';
 import UploadImage from '../UploadImage/UploadImage';
-import ContentQuillSection from '../ContentQuillSection/ContentQuilSection';
+import ContentQuillSection from '../ContentQuillSection/ContentQuillSection';
 import { ThemeContext } from '../ReuseableComponents/ThemeContext/ThemeContext';
 import ContentContainer from '../ReuseableComponents/ContentContainer/ContentContainer';
 import { useLocation, useNavigate, useParams } from 'react-router';
@@ -147,11 +147,12 @@ const BlogSection: React.FC<ThemeProps> = () => {
               }
             />
             <ContentQuillSection
-              content={blogState.blogContent}
+              blogContent={blogState.blogContent}
               setBlogState={(blogContent: string) =>
                 setBlogState({ ...blogState, blogContent })
               }
               handleSubmit={handleSubmit}
+              blogState={blogState}
             />
           </div>
         )}

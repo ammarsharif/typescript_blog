@@ -1,7 +1,6 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import CreateBlog from './CreateBlog';
 
-// Mock the function passed as a prop
 const mockSetBlogState = jest.fn();
 
 const mockBlogState = {
