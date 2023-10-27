@@ -1,6 +1,6 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import CreateBlog from './CreateBlog';
-
+import '@testing-library/jest-dom';
 const mockSetBlogState = jest.fn();
 
 const mockBlogState = {
@@ -17,7 +17,7 @@ beforeEach(() => {
 
 test('renders CreateBlog component', () => {
   const createBlogElement = screen.getByTestId('Create-Blog');
-  expect(createBlogElement).toBeTruthy();
+  expect(createBlogElement).toBeInTheDocument();
 });
 
 test('handles input change and calls setBlogState', () => {

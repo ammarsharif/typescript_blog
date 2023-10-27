@@ -2,10 +2,10 @@ import React from 'react';
 import { RouterProvider } from 'react-router';
 import { createBrowserRouter } from 'react-router-dom';
 import { BrowserRoutes } from '../../Constants/BrowseRoutes';
-import BlogList from '../BlogsList/BlogsList';
+import BlogsList from '../BlogsList/BlogsList';
 import TemplateLayout from '../TemplateLayout/TemplateLayout';
 import BlogSection from '../BlogSection/BlogSection';
-import Signin from '../SignIn/SignIn';
+import SignIn from '../SignIn/SignIn';
 import JobsList from '../JobsList/JobsList';
 import CreateJobs from '../CreateJobs/CreateJobs';
 const routerConfig = createBrowserRouter([
@@ -23,11 +23,11 @@ const routerConfig = createBrowserRouter([
       },
       {
         path: `${BrowserRoutes.BLOGLIST}`,
-        element: <BlogList />,
+        element: <BlogsList />,
       },
       {
         path: `${BrowserRoutes.SIGNIN}`,
-        element: <Signin />,
+        element: <SignIn />,
       },
       {
         path: `${BrowserRoutes.JOBSLIST}`,

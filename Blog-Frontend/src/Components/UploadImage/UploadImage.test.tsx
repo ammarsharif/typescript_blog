@@ -1,6 +1,6 @@
 import { render, fireEvent, waitFor, act } from '@testing-library/react';
 import UploadImage from './UploadImage';
-
+import '@testing-library/jest-dom';
 describe('UploadImage Component', () => {
   const setBlogState = jest.fn();
   const imageUrl =
@@ -21,7 +21,7 @@ describe('UploadImage Component', () => {
 
     const selectedImage = getByTestId('selectedImage');
 
-    expect(selectedImage).toBeTruthy();
+    expect(selectedImage).toBeInTheDocument();
   });
 
   it('allows selecting a new image', async () => {
@@ -32,7 +32,7 @@ describe('UploadImage Component', () => {
     const fileInput = getByTestId('fileInput');
     const selectedImage = getByTestId('selectedImage');
 
-    expect(selectedImage).toBeTruthy();
+    expect(selectedImage).toBeInTheDocument();
 
     act(() => {
       fireEvent.change(fileInput, {
@@ -44,7 +44,7 @@ describe('UploadImage Component', () => {
 
     await waitFor(() => {
       const selectedImage = getByTestId('selectedImage');
-      expect(selectedImage).toBeTruthy();
+      expect(selectedImage).toBeInTheDocument();
     });
   });
 
@@ -54,7 +54,7 @@ describe('UploadImage Component', () => {
     );
 
     const removeButton = getByTestId('removeButton');
-    expect(removeButton).toBeTruthy();
+    expect(removeButton).toBeInTheDocument();
 
     act(() => {
       fireEvent.click(removeButton);

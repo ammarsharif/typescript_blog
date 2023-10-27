@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import ContentContainer from './ContentContainer';
-
+import '@testing-library/jest-dom';
 describe('ContentContainer Component', () => {
   describe('without children', () => {
     it('contains no children', () => {
@@ -22,7 +22,7 @@ describe('ContentContainer Component', () => {
       );
 
       const childComponent = screen.getByText('Child Component');
-      expect(childComponent).toBeTruthy();
+      expect(childComponent).toBeInTheDocument();
     });
   });
 

@@ -12,6 +12,7 @@ import { BASE_API, BrowserRoutes } from '../../Constants/BrowseRoutes';
 import { getHeadersData } from '../../Constants/Headers';
 import { ThemeProps, blogListProps } from '../GlobalTypes/GlobalTypes';
 import { fetchBlogByUrl } from '../../Constants/BlogQueries';
+import Loader from '../Loader/Loader';
 export interface ModifiedBlogSectionProps extends blogListProps {
   _id?: string;
 }
@@ -106,15 +107,11 @@ const BlogSection: React.FC<ThemeProps> = () => {
     }
   };
   if (isLoading) {
-    return (
-      <div className={styles.loaderWrapper}>
-        <div className={styles.loader}></div>
-      </div>
-    );
+    return <Loader />;
   }
 
   if (isError) {
-    return <div>Error loading blog posts.</div>;
+    return <div className={styles.errorText}>No Blog Found With This URL.</div>;
   }
 
   const primaryFontStyle = {

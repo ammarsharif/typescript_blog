@@ -32,13 +32,11 @@ const ContentQuillSection: React.FC<Props> = ({
       .slice(1)
       .some((value) => typeof value === 'string' && value.trim() === '') ||
     quillValue.trim() === '<p><br></p>';
-  console.log(isDisabled);
-  console.log(quillValue);
 
   return (
     <ContentContainer width={100}>
       <div
-        className={styles['quill_header']}
+        className={styles.quillHeader}
         data-testid="mocked-ContentQuillSection"
       >
         <div>
@@ -48,7 +46,7 @@ const ContentQuillSection: React.FC<Props> = ({
           <br></br>
           <br></br>
           <ReactQuill
-            className={styles['quill-editor']}
+            className={styles.quillEditor}
             value={quillValue}
             onChange={handleContentChange}
             theme="snow"
@@ -57,8 +55,8 @@ const ContentQuillSection: React.FC<Props> = ({
 
         <button
           data-testid="Form-Submit"
-          className={`${styles['form-button']} ${
-            isDisabled ? styles['disabled-button'] : ''
+          className={`${styles.formButton} ${
+            isDisabled ? styles.disabledButton : ''
           }`}
           onClick={handleSubmit}
           disabled={isDisabled}

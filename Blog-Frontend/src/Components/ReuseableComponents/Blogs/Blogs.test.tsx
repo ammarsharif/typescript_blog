@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import Blog from './Blogs';
-
+import '@testing-library/jest-dom';
 const sampleProps = {
   contentSection: 'Sample Content',
   imageSection: <img src="./bg2.png" alt="Sample Image" />,
@@ -11,7 +11,7 @@ describe('Blog Component', () => {
     render(<Blog {...sampleProps} />);
     const image = screen.getByTestId('BlogListWrapper-image');
     const contentSection = screen.getByTestId('BlogListWrapper-content');
-    expect(image).toBeTruthy();
+    expect(image).toBeInTheDocument();
     expect(contentSection.textContent).toBe(sampleProps.contentSection);
   });
 
@@ -21,7 +21,7 @@ describe('Blog Component', () => {
     );
     const image = getByAltText('Sample Image');
     const children = getByText('Sample Children');
-    expect(image).toBeTruthy();
-    expect(children).toBeTruthy();
+    expect(image).toBeInTheDocument();
+    expect(children).toBeInTheDocument();
   });
 });

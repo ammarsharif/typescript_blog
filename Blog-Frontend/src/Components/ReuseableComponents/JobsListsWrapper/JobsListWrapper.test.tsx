@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import JobsListWrapper from './JobsListsWrapper';
 import '../../../jest-extended.d.ts';
-
+import '@testing-library/jest-dom';
 describe('JobsListWrapper Component', () => {
   const sampleProps = {
     contentSection: 'Sample Children',
@@ -12,7 +12,7 @@ describe('JobsListWrapper Component', () => {
 
   it('renders without errors', () => {
     render(<JobsListWrapper {...sampleProps}>Sample Children</JobsListWrapper>);
-    expect(screen.getByTestId('jobListWrapper')).toBeTruthy();
+    expect(screen.getByTestId('jobListWrapper')).toBeInTheDocument();
   });
 
   it('renders with required props', () => {
@@ -33,6 +33,6 @@ describe('JobsListWrapper Component', () => {
     render(<JobsListWrapper {...sampleProps}>Sample Children</JobsListWrapper>);
     const component = screen.getByTestId('jobListWrapper');
 
-    expect(component).toBeTruthy();
+    expect(component).toBeInTheDocument();
   });
 });

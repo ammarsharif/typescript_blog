@@ -28,7 +28,7 @@ const JobsList: React.FC<ThemeProps> = () => {
   });
 
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 4;
+  const itemsPerPage = 5;
   const totalPages = Math.ceil(jobData?.length / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
@@ -72,7 +72,7 @@ const JobsList: React.FC<ThemeProps> = () => {
   }
 
   if (isError) {
-    return <div>Error loading blog posts.</div>;
+    return <div className={styles.errorText}>Error Fetching Jobs.</div>;
   }
   return (
     <ContentContainer width={75}>
