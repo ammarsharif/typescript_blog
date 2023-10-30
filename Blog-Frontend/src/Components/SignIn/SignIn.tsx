@@ -19,6 +19,7 @@ const SignIn: React.FC = () => {
       const response = await axios.post(`${BASE_API}/api/user/login`, user);
       localStorage.setItem('token', response.data.token);
       console.log('SignIn response:', response);
+      localStorage.setItem('username', response.data.username); // Store the username
       navigate('/blogs');
     } catch (error) {
       console.error('Unable to Login', error);

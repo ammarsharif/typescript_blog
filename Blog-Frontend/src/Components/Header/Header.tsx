@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './Header.module.css';
 import { BrowserRoutes } from '../../Constants/BrowseRoutes';
@@ -7,6 +7,7 @@ import ContentContainer from '../ReuseableComponents/ContentContainer/ContentCon
 import { ThemeContext } from '../ReuseableComponents/ThemeContext/ThemeContext';
 import MobileNavButton from '../MobileNavButton/MobileNavButton';
 import Logout from '../Logout/Logout';
+import { useAuth } from '../AuthContext/AuthContext';
 
 interface StyledNavLinkProps {
   to: string;
@@ -34,6 +35,13 @@ const StyledNavLink = (props: StyledNavLinkProps) => {
 };
 
 const NavItems: React.FC = () => {
+  const { username } = useAuth();
+  const [displayName, setDisplayName] = useState<string | null>(null);
+
+  useEffect(() => {
+    setDisplayName(username);
+  }, [username]);
+
   return (
     <>
       <ul>
@@ -46,11 +54,16 @@ const NavItems: React.FC = () => {
         <li>
           <StyledNavLink to={BrowserRoutes.SIGNIN}>SignIn</StyledNavLink>
         </li>
+        <li>
+          <StyledNavLink to={BrowserRoutes.HOME}>
+            {displayName ? `Welcome, ${displayName}!` : 'Please log in'}
+          </StyledNavLink>
+        </li>
       </ul>
       <ul>
         <li>
           <StyledNavLink to={BrowserRoutes.SIGNIN}>
-            <Logout />
+            <Logout onLogout={() => setDisplayName(null)} />
           </StyledNavLink>
         </li>
       </ul>
