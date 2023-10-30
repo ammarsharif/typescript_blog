@@ -19,10 +19,11 @@ const SignIn: React.FC = () => {
       const response = await axios.post(`${BASE_API}/api/user/login`, user);
       localStorage.setItem('token', response.data.token);
       console.log('SignIn response:', response);
+      navigate('/blogs');
     } catch (error) {
       console.error('Unable to Login', error);
+      alert('Invalid credentials! Please try again.');
     }
-    navigate('/blogs');
   };
 
   const handleStateChange = (e: React.ChangeEvent<HTMLInputElement>) => {

@@ -1,4 +1,4 @@
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, act } from '@testing-library/react';
 import CreateBlog from './CreateBlog';
 import '@testing-library/jest-dom';
 const mockSetBlogState = jest.fn();
@@ -24,10 +24,11 @@ test('handles input change and calls setBlogState', () => {
   const titleInput = screen.getByLabelText('Title:');
   const authorInput = screen.getByLabelText('Author:');
   const summaryInput = screen.getByLabelText('Summary:');
-
-  fireEvent.change(titleInput, { target: { value: 'New Title' } });
-  fireEvent.change(authorInput, { target: { value: 'New Author' } });
-  fireEvent.change(summaryInput, { target: { value: 'New Summary' } });
+  act(() => {
+    fireEvent.change(titleInput, { target: { value: 'New Title' } });
+    fireEvent.change(authorInput, { target: { value: 'New Author' } });
+    fireEvent.change(summaryInput, { target: { value: 'New Summary' } });
+  });
 
   expect(mockSetBlogState).toHaveBeenCalledTimes(3);
   expect(mockSetBlogState).toHaveBeenCalledWith('blogTitle', 'New Title');

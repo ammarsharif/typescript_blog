@@ -52,6 +52,7 @@ const BlogsList: React.FC = () => {
         console.log('Blog Deleted successfully.');
       },
       onError: (error) => {
+        alert('Please log in to proceed with this action.');
         console.error('Error deleting the blog post:', error);
       },
     });

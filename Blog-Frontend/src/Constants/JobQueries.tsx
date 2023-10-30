@@ -7,7 +7,7 @@ export const fetchCareerData = async () => {
   if (response.data.ok) {
     return response.data.jobPosts;
   } else {
-    throw new Error('Error fetching blog data');
+    throw new Error('Error fetching job data');
   }
 };
 

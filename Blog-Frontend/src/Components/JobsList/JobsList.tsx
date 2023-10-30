@@ -40,8 +40,7 @@ const JobsList: React.FC<ThemeProps> = () => {
   };
 
   const deleteHandler = (jobId: string) => {
-    console.log('Deleting blog with ID:', jobId);
-    alert('Job Deleted successfully.');
+    console.log('Deleting Job with ID:', jobId);
     mutate(jobId, {
       onSuccess: (deletedJobId) => {
         jobData?.filter(
@@ -50,6 +49,7 @@ const JobsList: React.FC<ThemeProps> = () => {
         console.log('Deleted job');
       },
       onError: (error) => {
+        alert('Please log in to proceed with this action.');
         console.error('Error deleting the Job:', error);
       },
     });
@@ -77,7 +77,7 @@ const JobsList: React.FC<ThemeProps> = () => {
   return (
     <ContentContainer width={75}>
       <div className={styles.bannerWrapper}>
-        <div className={styles.jobs_list}>
+        <div className={styles.jobs_list} data-testid="jobContainer">
           <AddButton
             onClick={handleAddButton}
             width={17.5}
@@ -85,8 +85,12 @@ const JobsList: React.FC<ThemeProps> = () => {
             margin={1.2}
             name="New Job"
           />
-          {jobsDisplay?.map((jobs: ModifiedJobListProps) => (
-            <div className={styles.blogsList}>
+          {jobsDisplay?.map((jobs: ModifiedJobListProps, index: string) => (
+            <div
+              className={styles.jobsList}
+              key={index}
+              data-testid="jobWrapper"
+            >
               <JobsListWrapper
                 contentSection={
                   <div>
@@ -108,11 +112,17 @@ const JobsList: React.FC<ThemeProps> = () => {
               >
                 <div>
                   <NavLink to={`/jobs/${jobs?._id}`}>
-                    <button className={styles.buttonEdit}>Edit</button>
+                    <button
+                      className={styles.buttonEdit}
+                      data-testid="editButton"
+                    >
+                      Edit
+                    </button>
                   </NavLink>
                   <button
                     className={styles.buttonDelete}
                     onClick={() => deleteHandler(jobs._id)}
+                    data-testid="deleteButton"
                   >
                     Delete
                   </button>

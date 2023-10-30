@@ -79,6 +79,7 @@ const BlogSection: React.FC<ThemeProps> = () => {
         }
         alert('Blog updated successfully.');
       } catch (error) {
+        alert('Please log in to access update feature.');
         console.error('Error creating a new blog post:', error);
       }
     } else {
@@ -102,6 +103,7 @@ const BlogSection: React.FC<ThemeProps> = () => {
           setLoading(false);
         }
       } catch (error) {
+        alert('Please log in to create new blog.');
         console.error('Error creating a new blog post:', error);
       }
     }

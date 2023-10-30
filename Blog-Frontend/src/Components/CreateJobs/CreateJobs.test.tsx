@@ -1,8 +1,7 @@
-import { render, fireEvent, screen } from '@testing-library/react';
+import { render, fireEvent, screen, act } from '@testing-library/react';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { BrowserRouter as Router } from 'react-router-dom';
 import '@testing-library/jest-dom';
-import { act } from 'react-dom/test-utils';
 import CreateJobs from './CreateJobs';
 
 const queryClient = new QueryClient();

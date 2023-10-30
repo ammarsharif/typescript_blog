@@ -27,12 +27,12 @@ const JobsListWrapper: React.FC<JobsListWrapperProps> = ({
             >
               {contentSection}
             </h4>
-            <p
+            <h5
               className={styles.description}
               data-testid="jobListWrapper-location"
             >
               {location}
-            </p>
+            </h5>
           </div>
           <p className={styles.jobType} data-testid="jobListWrapper-jobType">
             {jobType}

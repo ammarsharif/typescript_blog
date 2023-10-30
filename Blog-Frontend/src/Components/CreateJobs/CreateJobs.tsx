@@ -90,6 +90,7 @@ const CreateJobs: React.FC<ThemeProps> = () => {
         }
         alert('Job updated successfully.');
       } catch (error) {
+        alert('Please log in to update this job.');
         console.error('Error creating a new Job post:', error);
       }
     } else {
@@ -107,14 +108,15 @@ const CreateJobs: React.FC<ThemeProps> = () => {
           createJob,
           getHeadersData()
         );
-        const blog = response.data;
+        const job = response.data;
         alert('Job created successfully.');
-        console.log(blog, 'Created Job');
+        console.log(job, 'Created Job');
 
         if (response.data.ok) {
           navigate('/jobs');
         }
       } catch (error) {
+        alert('Please log in to create new job.');
         console.error('Error creating a new job post:', error);
       }
     }

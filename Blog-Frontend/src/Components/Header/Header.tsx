@@ -6,6 +6,7 @@ import BusinessLogo from '../BusinessLogo/BusinessLogo';
 import ContentContainer from '../ReuseableComponents/ContentContainer/ContentContainer';
 import { ThemeContext } from '../ReuseableComponents/ThemeContext/ThemeContext';
 import MobileNavButton from '../MobileNavButton/MobileNavButton';
+import Logout from '../Logout/Logout';
 
 interface StyledNavLinkProps {
   to: string;
@@ -33,12 +34,6 @@ const StyledNavLink = (props: StyledNavLinkProps) => {
 };
 
 const NavItems: React.FC = () => {
-  const theme = useContext(ThemeContext);
-  const buttonStyle = {
-    backgroundColor: theme.blackColor,
-    color: theme.whiteColor,
-    fontFamily: theme.secondaryFont,
-  };
   return (
     <>
       <ul>
@@ -54,8 +49,8 @@ const NavItems: React.FC = () => {
       </ul>
       <ul>
         <li>
-          <StyledNavLink to={BrowserRoutes.HOME}>
-            <button style={buttonStyle}>Create Blog</button>
+          <StyledNavLink to={BrowserRoutes.SIGNIN}>
+            <Logout />
           </StyledNavLink>
         </li>
       </ul>
