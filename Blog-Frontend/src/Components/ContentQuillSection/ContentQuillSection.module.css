@@ -1,12 +1,12 @@
-.quill_header {
+.quillHeader {
   margin-top: 2em;
 }
-.quill-editor {
+.quillEditor {
   height: 300px;
   margin-bottom: 2em;
 }
 
-.form-button {
+.formButton {
   background-color: #9c001a;
   color: #ffff;
   border: none;
@@ -17,7 +17,7 @@
   font-weight: bold;
 }
 
-.form-button:hover {
+.formButton:hover {
   background-color: #8e0219;
 }
 .buttons {
@@ -31,8 +31,13 @@
   cursor: pointer;
   font-weight: bold;
 }
+.disabledButton {
+  background-color: #ba858e;
+  color: white;
+  pointer-events: none;
+}
 @media screen and (max-width: 25em) {
-  .quill-editor {
+  .quillEditor {
     margin-bottom: 3em;
   }
 }

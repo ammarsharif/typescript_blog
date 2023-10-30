@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import styles from './Signin.module.css';
+import styles from './SignIn.module.css';
 import ContentContainer from '../ReuseableComponents/ContentContainer/ContentContainer';
 import PanelSection from '../ReuseableComponents/PanelSection/PanelSection';
 import { useNavigate } from 'react-router-dom';
 import { BASE_API } from '../../Constants/BrowseRoutes';
 import axios from 'axios';
 
-const Signin: React.FC = () => {
+const SignIn: React.FC = () => {
   const initialState = {
     email: '',
     password: '',
@@ -19,10 +19,12 @@ const Signin: React.FC = () => {
       const response = await axios.post(`${BASE_API}/api/user/login`, user);
       localStorage.setItem('token', response.data.token);
       console.log('SignIn response:', response);
+      localStorage.setItem('username', response.data.username); // Store the username
+      navigate('/blogs');
     } catch (error) {
-      console.error('Error deleting the blog post:', error);
+      console.error('Unable to Login', error);
+      alert('Invalid credentials! Please try again.');
     }
-    navigate('/blogs');
   };
 
   const handleStateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -70,4 +72,4 @@ const Signin: React.FC = () => {
   );
 };
 
-export default Signin;
+export default SignIn;

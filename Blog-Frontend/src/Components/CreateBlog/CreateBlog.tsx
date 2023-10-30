@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './CreateBlog.module.css';
+
 interface CreateBlogProps {
   setBlogState: (fieldName: string, value: string) => void;
   blogState: {
@@ -21,8 +22,11 @@ const CreateBlog: React.FC<CreateBlogProps> = ({ setBlogState, blogState }) => {
     <div data-testid="Create-Blog">
       <form className={styles['form-container']}>
         <div>
-          <label className={styles['form-label']}>Title:</label>
+          <label htmlFor="blogTitle" className={styles['form-label']}>
+            Title:
+          </label>
           <input
+            id="blogTitle"
             className={styles['form-input']}
             type="text"
             name="blogTitle"
@@ -32,8 +36,11 @@ const CreateBlog: React.FC<CreateBlogProps> = ({ setBlogState, blogState }) => {
           />
         </div>
         <div>
-          <label className={styles['form-label']}>Author:</label>
+          <label htmlFor="blogAuthor" className={styles['form-label']}>
+            Author:
+          </label>
           <input
+            id="blogAuthor"
             className={styles['form-input']}
             type="text"
             name="blogAuthor"
@@ -43,8 +50,11 @@ const CreateBlog: React.FC<CreateBlogProps> = ({ setBlogState, blogState }) => {
           />
         </div>
         <div>
-          <label className={styles['form-label']}>Summary:</label>
+          <label htmlFor="blogSummary" className={styles['form-label']}>
+            Summary:
+          </label>
           <textarea
+            id="blogSummary"
             data-testid="message"
             required
             name="blogSummary"

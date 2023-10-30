@@ -22,13 +22,13 @@ export interface JobsListWrapperProps {
   contentDate?: React.ReactNode;
   location?: React.ReactNode;
   jobType?: React.ReactNode;
-  children?: React.ReactElement;
+  children?: React.ReactNode;
 }
 export interface BlogProps {
   imageSection?: React.ReactElement;
-  contentSection?: React.ReactElement;
+  contentSection?: React.ReactNode;
   contentDate?: React.ReactNode;
-  children?: React.ReactElement;
+  children?: React.ReactNode;
 }
 
 export interface AddButtonProps {

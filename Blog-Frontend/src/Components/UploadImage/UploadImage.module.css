@@ -1,4 +1,4 @@
-.image-upload-container {
+.imageUploadContainer {
   text-align: center;
   margin: 2em 0em;
   display: flex;
@@ -7,7 +7,7 @@
   padding-bottom: 1em;
 }
 
-.custom-logo-container {
+.customLogoContainer {
   position: relative;
   width: 250px;
   height: 250px;
@@ -20,17 +20,17 @@
   overflow: hidden;
 }
 
-.custom-logo-container img {
+.customLogoContainer img {
   width: 200px;
   height: 200px;
 }
 
-.image-preview {
+.imagePreview {
   max-width: fit-content;
   max-height: fit-content;
   object-fit: contain;
 }
-.remove-button {
+.removeButton {
   background-color: #9c001a;
   color: white;
   padding: 5px 10px;
@@ -42,12 +42,7 @@
   transform: translateX(-50%);
 }
 @media screen and (max-width: 32em) {
-  .image-upload-container {
-    text-align: center;
+  .imageUploadContainer {
     margin-top: 5em;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
   }
 }

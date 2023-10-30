@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Blog from '../Blogs/Blogs';
 import styles from './BlogsList.module.css';
 import { NavLink } from 'react-router-dom';
 import ContentContainer from '../ReuseableComponents/ContentContainer/ContentContainer';
@@ -10,10 +9,11 @@ import Loader from '../Loader/Loader';
 import { blogListProps } from '../GlobalTypes/GlobalTypes';
 import { deleteBlog, fetchBlogData } from '../../Constants/BlogQueries';
 import Pagination from '../Pagination/Pagination';
+import Blog from '../ReuseableComponents/Blogs/Blogs';
 export interface ModifiedBlogListProps extends blogListProps {
   _id: string;
 }
-const BlogList: React.FC = () => {
+const BlogsList: React.FC = () => {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
   const {
@@ -43,17 +43,16 @@ const BlogList: React.FC = () => {
 
   const deleteHandler = (blogId: string) => {
     console.log('Deleting blog with ID:', blogId);
-    alert('Blog Deleted successfully.');
-
     mutate(blogId, {
       onSuccess: (deletedBlogId) => {
-        blogData?.filter(
+        const updatedBlogData = blogData?.filter(
           (blog: ModifiedBlogListProps) => blog._id !== deletedBlogId
         );
-
-        console.log('Deleted Blog');
+        queryClient.setQueryData('blogs', updatedBlogData);
+        console.log('Blog Deleted successfully.');
       },
       onError: (error) => {
+        alert('Please log in to proceed with this action.');
         console.error('Error deleting the blog post:', error);
       },
     });
@@ -67,13 +66,13 @@ const BlogList: React.FC = () => {
   }
 
   if (isError) {
-    return <div>Error loading blog posts.</div>;
+    return <div className={styles.errorText}>Error Fetching Blog Posts.</div>;
   }
 
   return (
     <ContentContainer width={75}>
-      <div className={styles['blog_container']}>
-        <div className={styles['blog_list']}>
+      <div className={styles.blogContainer}>
+        <div className={styles.blogList} data-testid="blogContainer">
           <AddButton
             onClick={handleAddButton}
             width={17.7}
@@ -82,7 +81,11 @@ const BlogList: React.FC = () => {
             name="New Blog"
           />
           {blogsDisplay?.map((blog: ModifiedBlogListProps, index: string) => (
-            <div className={styles.blogsList} key={index}>
+            <div
+              className={styles.blogsList}
+              key={index}
+              data-testid="blogWrapper"
+            >
               <Blog
                 imageSection={<img src={blog?.blogImageUrl} alt="BlogImage" />}
                 contentSection={
@@ -93,9 +96,12 @@ const BlogList: React.FC = () => {
               >
                 <div>
                   <NavLink to={`/blogs/${blog?.blogUrl}`}>
-                    <button>Edit</button>
+                    <button data-testid="editButton">Edit</button>
                   </NavLink>
-                  <button onClick={() => deleteHandler(blog._id)}>
+                  <button
+                    onClick={() => deleteHandler(blog._id)}
+                    data-testid="deleteButton"
+                  >
                     Delete
                   </button>
                 </div>
@@ -113,4 +119,4 @@ const BlogList: React.FC = () => {
   );
 };
 
-export default BlogList;
+export default BlogsList;
